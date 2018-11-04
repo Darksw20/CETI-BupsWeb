@@ -53,7 +53,7 @@
 		}
 		else
 		{
-			$json['tipoUser']=404;
+			$json['tipoUser']=500;
 		}
 		mysqli_close($conexion);
 		echo json_encode($json);

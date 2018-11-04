@@ -28,7 +28,7 @@
 		}
 		else
 		{
-			$json['tipo']=0;
+			$json['tipo']=404;
 		}
 		mysqli_close($conexion);
 		echo json_encode($json);

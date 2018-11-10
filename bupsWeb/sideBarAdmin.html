@@ -16,6 +16,7 @@
     crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
     crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 </head>
 
 <body>
@@ -63,10 +64,10 @@
           </a>
           <ul class="collapse list-unstyled" id="ReportesSubmenu">
             <li>
-              <a href="#" onclick="toggleVisibility('gananciasTotales')" class="text-dark">Nuevo</a>
+              <a href="#" onclick="toggleVisibility('nuevoReporte')" class="text-dark">Nuevo</a>
             </li>
             <li>
-              <a href="#" onclick="toggleVisibility('gananciasProducto')" class="text-dark">Reportes</a>
+              <a href="#" onclick="toggleVisibility('reportes')" class="text-dark">Reportes</a>
             </li>
           </ul>
         </li>
@@ -84,16 +85,30 @@
     </nav>
 
     <!-- Page Content  -->
-    <div id="content">
-      <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow barral">
+    <div id="content" style="background: linear-gradient(to top left, #6600ff 0%, #cc99ff 100%);">
+      <div class="container" >
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow barral" style="background: linear-gradient(to top left, #6600ff 0%, #cc33ff 100%)">
           <div class="container-fluid">
-            <h4 class="mx-auto">Hola, administrador</h4>
+            <h4 class="mx-auto">Sistema de Encuentro, Expresion y Arte Scout. </h4>
           </div>
         </nav>
       </div>
 
       <!--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxAdmin Menuxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
+      <div id="adminDash" style="display: none; padding-top: 3rem;">
+
+        <div class="card w-100 mx-auto shadow">
+
+
+          <div class="card-body">
+
+            <canvas id="myChart"></canvas>            
+
+          </div>
+          <!--CARD BODY-->
+        </div>
+        <!--CARD-->
+      </div>
 
       <div id="organizador" style="display: none; padding-top: 3rem;">
 
@@ -101,73 +116,48 @@
           <div class="card-header bg-white">
             <select class="custom-select" id="formSelect0">
               <option value="0">Agregar Organizador</option>
-              <option value="1">Eliminar Organizador</option>
-              <option value="2">Editar Organizador</option>
+              <option value="1">Editar Organizador</option>
             </select>
           </div>
 
           <div class="card-body">
             <div id="0" class="formulario 0">
-              <form>
-                <h6 class="text-primary">Datos de ususario</h6>
-                <hr>
-                <div class="form-row">
-                  <div class="col-md-3 mb-2">
-                    <label for="validationDefault01">Nombre</label>
-                    <input type="text" class="form-control" id="validationDefault01" required>
+                <form>
+                    <div class="form-row">
+                      <label for="eliminarUsuario">Nombre de usuario</label>
+                      <div class="input-group">
+                        <input type="text" class="form-control" id="eliminarUsuario" placeholder="nombre del usuario">
+                        <div class="input-group-append">
+                          <button class="btn btn-primary" type="submit">buscar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                  <div class="table-responsive" style="padding-top: 2rem;">
+                    <table class="table table-hover table-bordered">
+                      <thead class="thead-light">
+                        <tr>
+                          <th scope="col">Tipo de usuario</th>
+                          <th scope="col">CUM</th>
+                          <th scope="col">Nombre</th>
+                          <th scope="col">Apellido Paterno</th>
+                          <th scope="col">Apellido Materno</th>
+                          <th scope="col">Editar</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr data-toggle="modal" data-target="#modalConfirmacionorganizador">
+                          <td>Organizador(1)</td>
+                          <td>JAL0720230</td>
+                          <td>Ricardo</td>
+                          <td>Navarro</td>
+                          <td>Viña</td>
+                          <td> <i onClick= "modalConfiramacionorganizador"class="fas fa-edit fa-lg"></i> <i class="fas fa-minus-circle fa-lg"></i></td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
-                  <div class="col-md-3 mb-2">
-                    <label for="validationDefault02">Apellido Paterno</label>
-                    <input type="text" class="form-control" id="validationDefault02" required>
-                  </div>
-                  <div class="col-md-3 mb-2">
-                    <label for="validationDefault03">Apellido Materno</label>
-                    <input type="text" class="form-control" id="validationDefault03" required>
-                  </div>
-                  <div class="col-md-3 mb-2">
-                    <label for="validationDefault03">Telefono</label>
-                    <input type="text" class="form-control" id="validationDefault03" required>
-                  </div>
-                </div>
-
-                <div class="form-row">
-                  <div class="col-md-3 mb-3">
-                    <label for="validationDefault03">Correo</label>
-                    <input type="text" class="form-control" id="validationDefault03" required>
-                  </div>
-                  <div class="col-md-3 mb-3">
-                    <label for="validationDefault04">Contraseña</label>
-                    <input type="text" class="form-control" id="validationDefault04" required>
-                  </div>
-                  <div class="col-md-6 mb-3">
-                    <label for="validationDefault05">Nombre de usuario</label>
-                    <input type="text" class="form-control" id="validationDefault05" required>
-                  </div>
-                </div>
-
-                <h6 class="text-primary">Domicilio</h6>
-                <hr>
-                <div class="form-row">
-                  <div class="col-md-4 mb-2">
-                    <label for="validationDefault01">Calle</label>
-                    <input type="text" class="form-control" id="validationDefault01" required>
-                  </div>
-                  <div class="col-md-2 mb-2">
-                    <label for="validationDefault02">Numero</label>
-                    <input type="text" class="form-control" id="validationDefault02" required>
-                  </div>
-                  <div class="col-md-4 mb-2">
-                    <label for="validationDefault03">colonia</label>
-                    <input type="text" class="form-control" id="validationDefault03" required>
-                  </div>
-                  <div class="col-md-2 mb-2">
-                    <label for="validationDefault03">Código postal</label>
-                    <input type="text" class="form-control" id="validationDefault03" required>
-                  </div>
-                </div>
-
-                <button class="btn btn-primary" type="submit">Agregar organizador</button>
-              </form>
+                  <button class="btn btn-primary" type="submit">Guardar</button>
             </div>
             <!--formulario 0-->
 
@@ -176,7 +166,7 @@
                 <div class="form-row">
                   <label for="eliminarUsuario">Nombre de usuario</label>
                   <div class="input-group">
-                    <input type="text" class="form-control" id="eliminarUsuario" placeholder="nombre_empresa">
+                    <input type="text" class="form-control" id="eliminarUsuario" placeholder="Nombre del uusar">
                     <div class="input-group-append">
                       <button class="btn btn-primary" type="submit">buscar</button>
                     </div>
@@ -187,24 +177,28 @@
                 <table class="table table-hover table-bordered">
                   <thead class="thead-light">
                     <tr>
-                      <th scope="col">Nombre de usuario</th>
-                      <th scope="col">Correo</th>
                       <th scope="col">Tipo de usuario</th>
+                      <th scope="col">CUM</th>
                       <th scope="col">Nombre</th>
-                      <th scope="col">Apellido paterno</th>
+                      <th scope="col">Apellido Paterno</th>
+                      <th scope="col">Apellido Materno</th>
+                      <th scope="col">Editar</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr data-toggle="modal" data-target="#modalConfirmacionorganizador">
-                      <td>ejemploEmpresa</td>
-                      <td>ejemplo@empresa.com</td>
-                      <td>organizador (1)</td>
-                      <td>Juan</td>
-                      <td>González</td>
+                      <td>Organizador(1)</td>
+                      <td>JAL0720230</td>
+                      <td>Ricardo</td>
+                      <td>Navarro</td>
+                      <td>Viña</td>
+                      <td> <i onClick= "modalConfiramacionorganizador"class="fas fa-edit fa-lg"></i> <i class="fas fa-minus-circle fa-lg"></i></td>
                     </tr>
                   </tbody>
                 </table>
+                <button class="btn btn-primary" type="submit">Guardar</button>
               </div>
+              
             </div>
             <!--formulario 1-->
           </div>
@@ -220,74 +214,49 @@
         <div class="card w-100 mx-auto shadow">
           <div class="card-header bg-white">
             <select class="custom-select" id="formSelect1">
-              <option value="01">Agregar Staff</option>
-              <option value="11">Eliminar Staff</option>
-              <option value="21">Editar Staff</option>
+              <option value="01">Agregar staff</option>
+              <option value="11">Editar staff</option>
             </select>
           </div>
 
           <div class="card-body">
             <div id="01" class="formulario 0">
-              <form>
-                <h6 class="text-primary">Datos de ususario</h6>
-                <hr>
-                <div class="form-row">
-                  <div class="col-md-3 mb-2">
-                    <label for="validationDefault01">Nombre</label>
-                    <input type="text" class="form-control" id="validationDefault01" required>
+                <form>
+                    <div class="form-row">
+                      <label for="eliminarUsuario">Nombre de usuarios</label>
+                      <div class="input-group">
+                        <input type="text" class="form-control" id="eliminarUsuario" placeholder="nombre del usuario">
+                        <div class="input-group-append">
+                          <button class="btn btn-primary" type="submit">buscar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                  <div class="table-responsive" style="padding-top: 2rem;">
+                    <table class="table table-hover table-bordered">
+                      <thead class="thead-light">
+                        <tr>
+                          <th scope="col">Tipo de usuario</th>
+                          <th scope="col">CUM</th>
+                          <th scope="col">Nombre</th>
+                          <th scope="col">Apellido Paterno</th>
+                          <th scope="col">Apellido Materno</th>
+                          <th scope="col">Editar</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr data-toggle="modal" data-target="#modalConfirmacionstaff">
+                          <td>staff(2)</td>
+                          <td>JAL0720230</td>
+                          <td>Ricardo</td>
+                          <td>Navarro</td>
+                          <td>Viña</td>
+                          <td> <i onClick= "modalConfiramacionstaff"class="fas fa-edit fa-lg"></i> <i class="fas fa-minus-circle fa-lg"></i></td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
-                  <div class="col-md-3 mb-2">
-                    <label for="validationDefault02">Apellido Paterno</label>
-                    <input type="text" class="form-control" id="validationDefault02" required>
-                  </div>
-                  <div class="col-md-3 mb-2">
-                    <label for="validationDefault03">Apellido Materno</label>
-                    <input type="text" class="form-control" id="validationDefault03" required>
-                  </div>
-                  <div class="col-md-3 mb-2">
-                    <label for="validationDefault03">Telefono</label>
-                    <input type="text" class="form-control" id="validationDefault03" required>
-                  </div>
-                </div>
-
-                <div class="form-row">
-                  <div class="col-md-3 mb-3">
-                    <label for="validationDefault03">Correo</label>
-                    <input type="text" class="form-control" id="validationDefault03" required>
-                  </div>
-                  <div class="col-md-3 mb-3">
-                    <label for="validationDefault04">Contraseña</label>
-                    <input type="text" class="form-control" id="validationDefault04" required>
-                  </div>
-                  <div class="col-md-6 mb-3">
-                    <label for="validationDefault05">Nombre de usuario</label>
-                    <input type="text" class="form-control" id="validationDefault05" required>
-                  </div>
-                </div>
-
-                <h6 class="text-primary">Domicilio</h6>
-                <hr>
-                <div class="form-row">
-                  <div class="col-md-4 mb-2">
-                    <label for="validationDefault01">Calle</label>
-                    <input type="text" class="form-control" id="validationDefault01" required>
-                  </div>
-                  <div class="col-md-2 mb-2">
-                    <label for="validationDefault02">Numero</label>
-                    <input type="text" class="form-control" id="validationDefault02" required>
-                  </div>
-                  <div class="col-md-4 mb-2">
-                    <label for="validationDefault03">colonia</label>
-                    <input type="text" class="form-control" id="validationDefault03" required>
-                  </div>
-                  <div class="col-md-2 mb-2">
-                    <label for="validationDefault03">Código postal</label>
-                    <input type="text" class="form-control" id="validationDefault03" required>
-                  </div>
-                </div>
-
-                <button class="btn btn-primary" type="submit">Agregar Staff</button>
-              </form>
+                  <button class="btn btn-primary" type="submit">Guardar</button>
             </div>
             <!--formulario 0-->
 
@@ -296,7 +265,7 @@
                 <div class="form-row">
                   <label for="eliminarUsuario">Nombre de usuario</label>
                   <div class="input-group">
-                    <input type="text" class="form-control" id="eliminarUsuario" placeholder="nombre_empresa">
+                    <input type="text" class="form-control" id="eliminarUsuario" placeholder="Nombre del uusar">
                     <div class="input-group-append">
                       <button class="btn btn-primary" type="submit">buscar</button>
                     </div>
@@ -307,24 +276,28 @@
                 <table class="table table-hover table-bordered">
                   <thead class="thead-light">
                     <tr>
-                      <th scope="col">Nombre de usuario</th>
-                      <th scope="col">Correo</th>
                       <th scope="col">Tipo de usuario</th>
+                      <th scope="col">CUM</th>
                       <th scope="col">Nombre</th>
-                      <th scope="col">Apellido paterno</th>
+                      <th scope="col">Apellido Paterno</th>
+                      <th scope="col">Apellido Materno</th>
+                      <th scope="col">Editar</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr data-toggle="modal" data-target="#modalConfirmacionstaff">
-                      <td>ejemploEmpresa</td>
-                      <td>ejemplo@empresa.com</td>
-                      <td>organizador (1)</td>
-                      <td>Juan</td>
-                      <td>González</td>
+                      <td>staff(2)</td>
+                      <td>JAL0720230</td>
+                      <td>Ricardo</td>
+                      <td>Navarro</td>
+                      <td>Viña</td>
+                      <td> <i onClick= "modalConfiramacionstaff"class="fas fa-edit fa-lg"></i> <i class="fas fa-minus-circle fa-lg"></i></td>
                     </tr>
                   </tbody>
                 </table>
+                <button class="btn btn-primary" type="submit">Guardar</button>
               </div>
+              
             </div>
             <!--formulario 1-->
           </div>
@@ -332,91 +305,66 @@
         </div>
         <!--CARD-->
       </div>
-      <!--Staff-->
+      <!--staff-->
 
 
       <div id="serviciomedico" style="display: none; padding-top: 3rem;">
 
         <div class="card w-100 mx-auto shadow">
           <div class="card-header bg-white">
-            <select class="custom-select" id="formSelect0">
-              <option value="0">Agregar ServicoMedico</option>
-              <option value="1">Eliminar ServicioMedico</option>
-              <option value="2">Editar ServicioMedico</option>
+            <select class="custom-select" id="formSelect2">
+              <option value="011">Agregar staff</option>
+              <option value="111">Editar staff</option>
             </select>
           </div>
 
           <div class="card-body">
-            <div id="0" class="formulario 0">
-              <form>
-                <h6 class="text-primary">Datos de ususario</h6>
-                <hr>
-                <div class="form-row">
-                  <div class="col-md-3 mb-2">
-                    <label for="validationDefault01">Nombre</label>
-                    <input type="text" class="form-control" id="validationDefault01" required>
+            <div id="011" class="formulario 0">
+                <form>
+                    <div class="form-row">
+                      <label for="eliminarUsuario">Nombre de usuarios</label>
+                      <div class="input-group">
+                        <input type="text" class="form-control" id="eliminarUsuario" placeholder="nombre del usuario">
+                        <div class="input-group-append">
+                          <button class="btn btn-primary" type="submit">buscar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                  <div class="table-responsive" style="padding-top: 2rem;">
+                    <table class="table table-hover table-bordered">
+                      <thead class="thead-light">
+                        <tr>
+                          <th scope="col">Tipo de usuario</th>
+                          <th scope="col">CUM</th>
+                          <th scope="col">Nombre</th>
+                          <th scope="col">Apellido Paterno</th>
+                          <th scope="col">Apellido Materno</th>
+                          <th scope="col">Editar</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr data-toggle="modal" data-target="#modalConfirmacionserviciomedico">
+                          <td>servicioMedico(3)</td>
+                          <td>JAL0720230</td>
+                          <td>Ricardo</td>
+                          <td>Navarro</td>
+                          <td>Viña</td>
+                          <td> <i onClick= "modalConfiramacionserviciomedico"class="fas fa-edit fa-lg"></i> <i class="fas fa-minus-circle fa-lg"></i></td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
-                  <div class="col-md-3 mb-2">
-                    <label for="validationDefault02">Apellido Paterno</label>
-                    <input type="text" class="form-control" id="validationDefault02" required>
-                  </div>
-                  <div class="col-md-3 mb-2">
-                    <label for="validationDefault03">Apellido Materno</label>
-                    <input type="text" class="form-control" id="validationDefault03" required>
-                  </div>
-                  <div class="col-md-3 mb-2">
-                    <label for="validationDefault03">Telefono</label>
-                    <input type="text" class="form-control" id="validationDefault03" required>
-                  </div>
-                </div>
-
-                <div class="form-row">
-                  <div class="col-md-3 mb-3">
-                    <label for="validationDefault03">Correo</label>
-                    <input type="text" class="form-control" id="validationDefault03" required>
-                  </div>
-                  <div class="col-md-3 mb-3">
-                    <label for="validationDefault04">Contraseña</label>
-                    <input type="text" class="form-control" id="validationDefault04" required>
-                  </div>
-                  <div class="col-md-6 mb-3">
-                    <label for="validationDefault05">Nombre de usuario</label>
-                    <input type="text" class="form-control" id="validationDefault05" required>
-                  </div>
-                </div>
-
-                <h6 class="text-primary">Domicilio</h6>
-                <hr>
-                <div class="form-row">
-                  <div class="col-md-4 mb-2">
-                    <label for="validationDefault01">Calle</label>
-                    <input type="text" class="form-control" id="validationDefault01" required>
-                  </div>
-                  <div class="col-md-2 mb-2">
-                    <label for="validationDefault02">Numero</label>
-                    <input type="text" class="form-control" id="validationDefault02" required>
-                  </div>
-                  <div class="col-md-4 mb-2">
-                    <label for="validationDefault03">colonia</label>
-                    <input type="text" class="form-control" id="validationDefault03" required>
-                  </div>
-                  <div class="col-md-2 mb-2">
-                    <label for="validationDefault03">Código postal</label>
-                    <input type="text" class="form-control" id="validationDefault03" required>
-                  </div>
-                </div>
-
-                <button class="btn btn-primary" type="submit">Agregar ServicioMedico</button>
-              </form>
+                  <button class="btn btn-primary" type="submit">Guardar</button>
             </div>
             <!--formulario 0-->
 
-            <div id="1" class="formulario 1" style="display: none;">
+            <div id="111" class="formulario 1" style="display: none;">
               <form>
                 <div class="form-row">
                   <label for="eliminarUsuario">Nombre de usuario</label>
                   <div class="input-group">
-                    <input type="text" class="form-control" id="eliminarUsuario" placeholder="nombre_empresa">
+                    <input type="text" class="form-control" id="eliminarUsuario" placeholder="Nombre del uusar">
                     <div class="input-group-append">
                       <button class="btn btn-primary" type="submit">buscar</button>
                     </div>
@@ -427,24 +375,28 @@
                 <table class="table table-hover table-bordered">
                   <thead class="thead-light">
                     <tr>
-                      <th scope="col">Nombre de usuario</th>
-                      <th scope="col">Correo</th>
                       <th scope="col">Tipo de usuario</th>
+                      <th scope="col">CUM</th>
                       <th scope="col">Nombre</th>
-                      <th scope="col">Apellido paterno</th>
+                      <th scope="col">Apellido Paterno</th>
+                      <th scope="col">Apellido Materno</th>
+                      <th scope="col">Editar</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr data-toggle="modal" data-target="#modalConfirmacionserviciomedico">
-                      <td>ejemploEmpresa</td>
-                      <td>ejemplo@empresa.com</td>
-                      <td>organizador (1)</td>
-                      <td>Juan</td>
-                      <td>González</td>
+                      <td>servicioMedico(3)</td>
+                      <td>JAL0720230</td>
+                      <td>Ricardo</td>
+                      <td>Navarro</td>
+                      <td>Viña</td>
+                      <td> <i onClick= "modalConfiramacionserviciomedico"class="fas fa-edit fa-lg"></i> <i class="fas fa-minus-circle fa-lg"></i></td>
                     </tr>
                   </tbody>
                 </table>
+                <button class="btn btn-primary" type="submit">Guardar</button>
               </div>
+              
             </div>
             <!--formulario 1-->
           </div>
@@ -452,7 +404,7 @@
         </div>
         <!--CARD-->
       </div>
-      <!--Servicio medico-->
+      <!--serviciomedico-->
 
       <div id="usuario" style="display: none; padding-top: 3rem;">
         <div class="card w-100 mx-auto shadow">
@@ -502,7 +454,7 @@
       <!--Usuario-->
 
       <!--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxAdmin Menuxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
-      <div id="gananciasTotales" style="display: none; padding-top: 3rem;">
+      <div id="nuevoReporte" style="display: none; padding-top: 3rem;">
         <div class="card w-100 mx-auto shadow">
           <div class="card-header header bg-white text-center">
             <h4>Ganacias totales</h4>
@@ -558,7 +510,7 @@
       </div>
       <!--gananciasTotales-->
 
-      <div id="gananciasProducto" style="display: none; padding-top: 3rem;">
+      <div id="reportes" style="display: none; padding-top: 3rem;">
         <div class="card w-100 mx-auto shadow">
           <div class="card-header header bg-white text-center">
             <h4>Ganacias por producto</h4>
@@ -656,6 +608,35 @@
         </div>
         <!--CARD-->
       </div>
+      <!--Carta Gantt-->
+
+      <div id="adminEvento" style="display: none; padding-top: 3rem;">
+          <div class="card w-100 mx-auto shadow">
+            <div class="card-header header bg-white text-center">
+              <h4>Buscar Usuario</h4>
+            </div>
+            <div class="card-body">
+              <form>
+                <div class="form-row">
+                  <label for="eliminarUsuario">Nombre de usuario</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control mb-2" id="eliminarUsuario" placeholder="JAL0720230">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary mb-2" type="submit">Buscar</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <div class="embed-responsive embed-responsive-16by9 ">
+                  <iframe class="embed-responsive-item" src ="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3115.6875777672344!2d-103.39525917374276!3d20.708307817834683!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428ae4c0728a2a3%3A0x675a6846f2b532c5!2sBosque+Colomos!5e0!3m2!1ses!2smx!4v1540356265341"></iframe>
+                   </div>
+              <!--tabla-->
+            </div>
+            <!--Card-body-->
+          </div>
+          <!--CARD-->
+        </div>
+        <!--mapa-->
 
     </div>
     <!--Admin dash-->
@@ -758,7 +739,7 @@
     //control de panel lateral
 
     //Mostrar la opcion de panel lateral
-    var divs = ["organizador", "staff", "serviciomedico", "usuario", "cartagantt", "gananciasTotales", "gananciasProducto", "inventario", "adminDash"];
+    var divs = ["organizador", "staff", "serviciomedico", "usuario", "cartagantt", "adminEvento", "nuevoReporte", "reportes", "inventario", "adminDash"];
     var visibleDivId = null;
 
     function toggleVisibility(divId) {
@@ -802,7 +783,38 @@
     });
       //seleccionar formulario 2
 
+          //Seleccionar formulario 3
+    $(function () {
+      $('#formSelect2').change(function () {
+        $('.formulario').hide();
+        $('#' + $(this).val()).show();
+      });
+    });
+      //seleccionar formulario 3
+
+//graficas
+var ctx = document.getElementById('myChart').getContext('2d');
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'line',
+
+    // The data for our dataset
+    data: {
+        labels: ["Agosto", "Septiembre", "Octubre", "Novimbre", "Diciembre"],
+        datasets: [{
+            label: "39° EEAS 'Personas Registradas' ",
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [0, 1000, 4350, 7600, 11200],
+        }]
+    },
+
+    // Configuration options go here
+    options: {}
+});
+
   </script>
+  <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
 </body>
 
 </html>

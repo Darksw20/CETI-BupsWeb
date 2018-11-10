@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    //funcion javascript en la cabecera del documento
+<script>
+
+function mostrarReferencia(){
+//Si la opcion con id Conocido_1 (dentro del documento > formulario con name fcontacto >     y a la vez dentro del array de Conocido) esta activada
+if (document.fcontacto.Conocido[1].checked == true) {
+//muestra (cambiando la propiedad display del estilo) el div con id 'desdeotro'
+document.getElementById('desdeotro').style.display='block';
+//por el contrario, si no esta seleccionada
+} else {
+//oculta el div con id 'desdeotro'
+document.getElementById('desdeotro').style.display='none';
+}
+}
+</script>
+</head>
+<body>
+        //se le asigna un name al formulario de contacto.
+        <form action="<?=$_SERVER['PHP_SELF']?>" method="post" name="fcontacto">
+        //inputs
+        
+        <p>A través de donde nos has conocido:<br />
+        //importante llamar a la función
+        <input type="radio" name="Conocido" value="Google" id="Conocido_0" onclick="mostrarReferencia();"/> Google
+        <input type="radio" name="Conocido" value="Otros" id="Conocido_1" onclick="mostrarReferencia();" /> Otros
+        </p>
+        
+        //div oculto
+        <div id="desdeotro" style="display:none;">
+        <p>Referencia de la oferta:</p>
+        <p><input type="text" name="otro" class="input" /></p>
+        </div>
+
+
+        <p>Sarampion</p>
+        <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="custom-control-input" id="saramsi" name="saramp" onclick="mostrarForm4Campos();"
+                checked>
+            <label class="custom-control-label" for="saramsi">Sí</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="custom-control-input" id="saramnol" name="saramp" onclick="mostrarForm4Campos();">
+            <label class="custom-control-label" for=saramnol">No</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="custom-control-input" id="saramns" name="saramp" onclick="mostrarForm4Campos();">
+            <label class="custom-control-label" for="saramns">No sé</label>
+        </div>
+
+</body>
+</html>

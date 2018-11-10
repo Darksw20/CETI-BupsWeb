@@ -84,7 +84,7 @@
               <i class="fas fa-align-left"></i>
               <span></span>
             </button>
-            <h4 class="mx-auto">Hola, Organizador</h4>
+            <h4 class="mx-auto">Sistema de Encuentro, Expresion y Arte Scout. </h4>
           </div>
         </nav>
       </div>
@@ -95,7 +95,7 @@
           <div class="card-header bg-white">
             <select class="custom-select" id="formSelect0">
               <option value="0">Agregar Staff</option>
-              <option value="1">Eliminar Staff</option>
+              <option value="1">Editar Staff</option>
             </select>
           </div>
 
@@ -189,6 +189,124 @@
                   </thead>
                   <tbody>
                     <tr data-toggle="modal" data-target="#modalConfirmacionStaff">
+                      <td>ejemploEmpresa</td>
+                      <td>ejemplo@empresa.com</td>
+                      <td>Staff (1)</td>
+                      <td>Juan</td>
+                      <td>González</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!--formulario 1-->
+          </div>
+          <!--CARD BODY-->
+        </div>
+        <!--CARD-->
+      </div>
+      <!--proveedor-->
+
+      <div id="serviciomedico" style="display: none; padding-top: 3rem;">
+
+        <div class="card w-100 mx-auto shadow">
+          <div class="card-header bg-white">
+            <select class="custom-select" id="formSelect0">
+              <option value="01">Agregar ServicioMedico</option>
+              <option value="11">Editar ServicioMedico</option>
+            </select>
+          </div>
+
+          <div class="card-body">
+            <div id="01" class="formulario 01">
+              <form>
+                <h6 class="text-primary">Datos de ususario</h6>
+                <hr>
+                <div class="form-row">
+                  <div class="col-md-3 mb-2">
+                    <label for="validationDefault01">Nombre</label>
+                    <input type="text" class="form-control" id="validationDefault01" required>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <label for="validationDefault02">Apellido Paterno</label>
+                    <input type="text" class="form-control" id="validationDefault02" required>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <label for="validationDefault03">Apellido Materno</label>
+                    <input type="text" class="form-control" id="validationDefault03" required>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <label for="validationDefault03">Telefono</label>
+                    <input type="text" class="form-control" id="validationDefault03" required>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="col-md-3 mb-3">
+                    <label for="validationDefault03">Correo</label>
+                    <input type="text" class="form-control" id="validationDefault03" required>
+                  </div>
+                  <div class="col-md-3 mb-3">
+                    <label for="validationDefault04">Contraseña</label>
+                    <input type="text" class="form-control" id="validationDefault04" required>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label for="validationDefault05">Nombre de usuario</label>
+                    <input type="text" class="form-control" id="validationDefault05" required>
+                  </div>
+                </div>
+
+                <h6 class="text-primary">Domicilio</h6>
+                <hr>
+                <div class="form-row">
+                  <div class="col-md-4 mb-2">
+                    <label for="validationDefault01">Calle</label>
+                    <input type="text" class="form-control" id="validationDefault01" required>
+                  </div>
+                  <div class="col-md-2 mb-2">
+                    <label for="validationDefault02">Numero</label>
+                    <input type="text" class="form-control" id="validationDefault02" required>
+                  </div>
+                  <div class="col-md-4 mb-2">
+                    <label for="validationDefault03">colonia</label>
+                    <input type="text" class="form-control" id="validationDefault03" required>
+                  </div>
+                  <div class="col-md-2 mb-2">
+                    <label for="validationDefault03">Código postal</label>
+                    <input type="text" class="form-control" id="validationDefault03" required>
+                  </div>
+                </div>
+
+                <button class="btn btn-primary" type="submit">Agregar ServicioMedico</button>
+              </form>
+            </div>
+            <!--formulario 0-->
+
+            <div id="11" class="formulario 11" style="display: none;">
+              <form>
+                <div class="form-row">
+                  <label for="eliminarUsuario">Nombre de usuario</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="eliminarUsuario" placeholder="nombre_empresa">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" type="submit">buscar</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <div class="table-responsive" style="padding-top: 2rem;">
+                <table class="table table-hover table-bordered">
+                  <thead class="thead-light">
+                    <tr>
+                      <th scope="col">Nombre de usuario</th>
+                      <th scope="col">Correo</th>
+                      <th scope="col">Tipo de usuario</th>
+                      <th scope="col">Nombre</th>
+                      <th scope="col">Apellido paterno</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr data-toggle="modal" data-target="#modalConfirmacionServicioMedico">
                       <td>ejemploEmpresa</td>
                       <td>ejemplo@empresa.com</td>
                       <td>Staff (1)</td>
@@ -420,6 +538,27 @@
     </div>
   </div>
   <!--Modal confirmación-->
+
+    <!--Modal confirmación proveedor-->
+    <div class="modal" id="modalConfirmacionServicioMedico">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Confirmar</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <h4>¿Quieres eliminar a -username- de la lista?</h4>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" name="eliminarProv">Aceptar</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Modal confirmación-->
+  
 
   <!--Modal confirmación usuario-->
   <div class="modal" id="modalConfirmacionUsuario">

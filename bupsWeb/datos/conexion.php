@@ -12,9 +12,7 @@ class conexion
     {
         try 
         {
-
-            $cn = new PDO("mysql:host=localhost; dbname=eeas1sindatos", "root","");
-
+            $cn = new PDO("mysql:host=localhost; dbname=bups1.0", "root","");
             return $cn;
         } catch (PDOException $ex)
          {

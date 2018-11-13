@@ -1,7 +1,6 @@
 <?php 
 include 'conexion.php';
 include '../entidades/usuario.php';
-//include '../controlador/usuarioControlador.php';
 class usuarioDao extends conexion
  
 {

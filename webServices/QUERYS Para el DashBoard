@@ -1,0 +1,70 @@
+QUERYS Para el DashBoard
+
+ETAPA REGISTROS
+
+Numero de registros por taller->TextView
+
+
+Numero de datos en REGNAL VS datos en Tabla Usuario->PieChart
+
+
+Numero de personas con mas de un Taller o Concurso->TextView
+
+
+Asistencia por provincia->BarChart
+
+
+Promedio de talleres por persona->TextView
+
+
+Kits Existentes vs Entregados->PieChart
+
+
+Tiempo de Registros activos->TextView
+
+
+Dispositivos en ventana de registro->TextView
+
+
+ETAPA EVENTO
+
+Cantidad de personas Dentro vs Afuera->PieChart
+
+
+
+Cantidad total de Entradas->TextView
+
+
+
+Cantidad total de Salidas->TextView
+
+
+Horas de contenidos->TextView
+
+
+
+ETAPA FIN DEL EVENTO
+
+Numero de Incidencias->TextView
+
+
+
+Personas que no han llegado a su destino vs los que si->PieChart
+
+
+
+Escala de satisfaccion de los usuarios->BarChart
+
+
+
+Gastos en Material Inicio Final->LineChart
+
+
+
+
+Evaluacion del evento(Talleres)->BarChart
+
+
+
+
+

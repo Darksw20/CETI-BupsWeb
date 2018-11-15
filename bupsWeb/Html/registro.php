@@ -3,7 +3,8 @@
     include ('../datos/conexion.php');
     include ('../datos/insertar.php');
 
-    if (isset($_POST['insertar']))
+   // var_dump($_POST);
+    if (isset($_POST['cum']))
     {
         $model =  new insertar();
         $model->Nombre = htmlspecialchars($_POST['nombre']);
@@ -12,7 +13,7 @@
         $model->A_Mat = htmlspecialchars($_POST['ap_ma']);
         $model->Sexo = htmlspecialchars($_POST['sexo']);
         $model->F_Nac = htmlspecialchars($_POST['fechadenacimiento']);
-        $model->Vigencia = htmlspecialchars($_POST['vigencia']);
+        $model->Vigencia = htmlspecialchars($_POST['vigenciascout']);
         $model->Provincia = htmlspecialchars($_POST['provincia']);
         $model->Grupo_S = htmlspecialchars($_POST['grupo']);
         $model->Seccion = htmlspecialchars($_POST['seccion']);
@@ -21,9 +22,9 @@
         $model->Password =sha1(htmlspecialchars($_POST['passuser']));
         $model->Estatura = htmlspecialchars($_POST['estatura']);
         $model->Peso = htmlspecialchars($_POST['peso']);
-        $model->Color_Cabello = htmlspecialchars($_POST['color-cabello']);
-        $model->Color_Ojos = htmlspecialchars($_POST['color-ojos']);
-        $model->Color_Piel = htmlspecialchars($_POST['color-piel']);
+        $model->Color_Cabello = htmlspecialchars($_POST['color_cabello']);
+        $model->Color_Ojos = htmlspecialchars($_POST['color_ojos']);
+        $model->Color_Piel = htmlspecialchars($_POST['color_piel']);
         $model->Tipo_Sangre = htmlspecialchars($_POST['tiposangre']);
         $model->Donar_Sangre = htmlspecialchars($_POST['donarsangre']);
         $model->Dieta = htmlspecialchars($_POST['dieta']);
@@ -33,15 +34,17 @@
         $model->Fam_Diabetes = htmlspecialchars($_POST['familiadiabetes']);
         $model->Fam_Hipertension = htmlspecialchars($_POST['familiahipertension']);
         $model->Afecciones_Frio_Calor = htmlspecialchars($_POST['afecciones']);
-        $model->Fk_Info_Emergencia = htmlspecialchars($_POST['infoemerg']);
-        $model->Fk_Regnal = htmlspecialchars($_POST['regnalito']);
+        //$model->Fk_Info_Emergencia = htmlspecialchars($_POST['1']);
+        //$model->Fk_Regnal = htmlspecialchars($_POST['jalo000001']);
         $model->Tipo_Usuario = htmlspecialchars($_POST['tipouser']);
         $model->Nomb_Cont_Emerg = htmlspecialchars($_POST['contactoemergencia']);
         $model->Dir_Cont_Emerg = htmlspecialchars($_POST['diremergencia']);
         $model->Tel_Cont_Emerg = htmlspecialchars($_POST['telefonoemergencia']);
         $model->insert();
-        var_dump($model);
+        //var_dump($model);
+        $_POST = array();
     }
+    
 ?>
 
 
@@ -322,7 +325,7 @@
             <input type="text" class="form-control mb-2" placeholder="Apellido Materno" name="ap_ma">
             <input type="password" class="form-control mb-2" placeholder="Password" name="passuser">
             <input type="text" placeholder="Telefono celular" class="form-control mb-2" name="celular">
-            <p>Tipo de usuario</p> <select name="seccion" class=" form-control mb-2" id="">
+            <p>Tipo de usuario</p> <select name="tipouser" class=" form-control mb-2" id="">
                 <option value="elegir" selected>Elegir</option>
                 <option value="6">Participante</option>
                 <option value="7">Scouter Responsable</option>
@@ -412,23 +415,23 @@
             <h4 class="font-weight-bold">Color de cabello</h4>
 
             <div class="custom-control custom-radio">
-                <input type="radio" class="custom-control-input" id="coln" name="color-cabello"  value="1" checked>
+                <input type="radio" class="custom-control-input" id="coln" name="color_cabello"  value="1" checked>
                 <label class="custom-control-label" for="coln">Negro</label>
             </div>
             <div class="custom-control custom-radio">
-                <input type="radio" class="custom-control-input" id="colc" name="color-cabello" value="2">
+                <input type="radio" class="custom-control-input" id="colc" name="color_cabello" value="2">
                 <label class="custom-control-label" for="colc">Castaño</label>
             </div>
             <div class="custom-control custom-radio">
-                <input type="radio" class="custom-control-input" id="colcr" name="color-cabello" value="3">
+                <input type="radio" class="custom-control-input" id="colcr" name="color_cabello" value="3">
                 <label class="custom-control-label" for="colcr">Castaño-Rojizo</label>
             </div>
             <div class="custom-control custom-radio">
-                <input type="radio" class="custom-control-input" id="colr" name="color-cabello" value="4">
+                <input type="radio" class="custom-control-input" id="colr" name="color_cabello" value="4">
                 <label class="custom-control-label" for="colr">Rubio</label>
             </div>
             <div class="custom-control custom-radio">
-                <input type="radio" class="custom-control-input" id="colo" name="color-cabello">
+                <input type="radio" class="custom-control-input" id="colo" name="color_cabello">
                 <label class="custom-control-label" for="colo"><input type="text" class="form-control mb-2" placeholder="otro..."></label>
             </div>
             <h4 class="font-weight-bold">Señas particulares especificas(Cicatrices, tatuajes, etc)</h4>
@@ -438,37 +441,37 @@
 
             <h4 class="font-weight-bold">Color de piel</h4>
             <div class="custom-control custom-radio">
-                <input type="radio" class="custom-control-input" id="colpc" name="color-piel"  value="1"checked>
+                <input type="radio" class="custom-control-input" id="colpc" name="color_piel"  value="1"checked>
                 <label class="custom-control-label" for="colpc">Claro</label>
             </div>
             <div class="custom-control custom-radio">
-                <input type="radio" class="custom-control-input" id="colpmc" name="color-piel" value="2">
+                <input type="radio" class="custom-control-input" id="colpmc" name="color_piel" value="2">
                 <label class="custom-control-label" for="colpmc">Moreno-Claro</label>
             </div>
             <div class="custom-control custom-radio">
-                <input type="radio" class="custom-control-input" id="colpmo" name="color-piel" value="3">
+                <input type="radio" class="custom-control-input" id="colpmo" name="color_piel" value="3">
                 <label class="custom-control-label" for="colpmo">Moreno-Obscuro</label>
             </div>
             <div class="custom-control custom-radio">
-                <input type="radio" class="custom-control-input" id="colpo" name="color-piel" value="4">
+                <input type="radio" class="custom-control-input" id="colpo" name="color_piel" value="4">
                 <label class="custom-control-label" for="colpo"><input type="text" class="form-control mb-2"
                         placeholder="otro..."></label>
             </div>
             <h4 class="font-weight-bold">Color de ojos</h4>
             <div class="custom-control custom-radio">
-                <input type="radio" class="custom-control-input" id="colon" name="color-ojos"  value="1"checked>
+                <input type="radio" class="custom-control-input" id="colon" name="color_ojos"  value="1"checked>
                 <label class="custom-control-label" for="colon">Negro</label>
             </div>
             <div class="custom-control custom-radio">
-                <input type="radio" class="custom-control-input" id="coloc" name="color-ojos" value="2">
+                <input type="radio" class="custom-control-input" id="coloc" name="color_ojos" value="2">
                 <label class="custom-control-label" for="coloc">Café</label>
             </div>
             <div class="custom-control custom-radio">
-                <input type="radio" class="custom-control-input" id="colom" name="color-ojos" value="3">
+                <input type="radio" class="custom-control-input" id="colom" name="color_ojos" value="3">
                 <label class="custom-control-label" for="colom">Miel</label>
             </div>
             <div class="custom-control custom-radio">
-                <input type="radio" class="custom-control-input" id="coloo" name="color-ojos" value="4">
+                <input type="radio" class="custom-control-input" id="coloo" name="color_ojos" value="4">
                 <label class="custom-control-label" for="coloo"><input type="text" class="form-control mb-2"
                         placeholder="otro..."></label>
             </div>
@@ -499,28 +502,28 @@
             </div>
             <h4 class="font-weight-bold">Diabetes</h4>
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" class="custom-control-input" id="diasi" name="diabetes" checked>
+                <input type="radio" class="custom-control-input" id="diasi" name="diabetes" value="1" checked>
                 <label class="custom-control-label" for="diasi">Sí</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" class="custom-control-input" id="diano" name="diabetes">
+                <input type="radio" class="custom-control-input" id="diano" name="diabetes" value="2">
                 <label class="custom-control-label" for="diano">No</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" class="custom-control-input" id="dians" name="diabetes">
+                <input type="radio" class="custom-control-input" id="dians" name="diabetes" value="3">
                 <label class="custom-control-label" for="dians">No sé</label>
             </div>
             <h4 class="font-weight-bold">Hipertension</h4>
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" class="custom-control-input" id="hipsi" name="hipertension" checked>
+                <input type="radio" class="custom-control-input" id="hipsi" name="hipertension" value="1"checked>
                 <label class="custom-control-label" for="hipsi">Sí</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" class="custom-control-input" id="hipno" name="hipertension">
+                <input type="radio" class="custom-control-input" id="hipno" name="hipertension"value="2">
                 <label class="custom-control-label" for="hipno">No</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" class="custom-control-input" id="hipns" name="hipertension">
+                <input type="radio" class="custom-control-input" id="hipns" name="hipertension"value="3">
                 <label class="custom-control-label" for="hipns">No sé</label>
             </div>
             <h4 class="font-weight-bold">Embolias</h4>
@@ -1639,28 +1642,28 @@
             <legend>Antecedentes familiares (Padres, Abuelos, Hermanos, Tíos, Primos).</legend>
             <p>¿Alguien en su familia tiene o ha tenido diabetes?</p>
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" class="custom-control-input" id="famdiasi" name="familiadiabetes" checked>
+                <input type="radio" class="custom-control-input" id="famdiasi" name="familiadiabetes" value="1" checked>
                 <label class="custom-control-label" for="famdiasi">Sí</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" class="custom-control-input" id="famdiano" name="familiadiabetes">
+                <input type="radio" class="custom-control-input" id="famdiano" name="familiadiabetes" value="2">
                 <label class="custom-control-label" for="famdiano">No</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" class="custom-control-input" id="famdians" name="familiadiabetes">
+                <input type="radio" class="custom-control-input" id="famdians" name="familiadiabetes" value="3">
                 <label class="custom-control-label" for="famdians">No sé</label>
             </div>
             <p>¿Su familia tiene historial de hipertension?</p>
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" class="custom-control-input" id="famhipsi" name="familiahipertension" checked>
+                <input type="radio" class="custom-control-input" id="famhipsi" name="familiahipertension" value="1" checked>
                 <label class="custom-control-label" for="famhipsi">Sí</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" class="custom-control-input" id="famhipno" name="familiahipertension">
+                <input type="radio" class="custom-control-input" id="famhipno" name="familiahipertension" value="2">
                 <label class="custom-control-label" for="famhipno">No</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" class="custom-control-input" id="famhipns" name="familiahipertension">
+                <input type="radio" class="custom-control-input" id="famhipns" name="familiahipertension" value="3">
                 <label class="custom-control-label" for="famhipns">No sé</label>
             </div>
             <p>¿Alguien en su familia tiene o ha tenido alguna enfermedad o sindrome de tipo hereditario?</p>

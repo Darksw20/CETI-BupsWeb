@@ -77,7 +77,7 @@
           </a>
         </li>
         <li>
-          <a href="#" class="text-dark">
+          <a href="src/proces-unlgn.php" class="text-dark">
             <i class="fas fa-user-circle fa-lg"></i>Cerrar sesión
           </a>
         </li>
@@ -96,14 +96,9 @@
 
       <!--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxAdmin Menuxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
       <div id="adminDash" style="display: none; padding-top: 3rem;">
-
         <div class="card w-100 mx-auto shadow">
-
-
           <div class="card-body">
-
             <canvas id="myChart"></canvas>            
-
           </div>
           <!--CARD BODY-->
         </div>

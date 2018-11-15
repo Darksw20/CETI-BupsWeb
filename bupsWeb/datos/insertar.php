@@ -34,14 +34,12 @@ class insertar{
     public $Nomb_Cont_Emerg;
     public $Dir_Cont_Emerg;
     public $Tel_Cont_Emerg;
-
     public function insert(){
 
 
         $model = new Conexion();
         $conexion = $model->conectar();
-
-
+        //---------------------Incersion en la tabla de contacto de emergencia-------------------------
         $sqlDeEmergencia = "INSERT INTO informacion_emergencia (";
 	    $sqlDeEmergencia .= "Nomb_Cont_Emerg, Dir_Cont_Emerg, Tel_Cont_Emerg";
 	    $sqlDeEmergencia .= ") VALUES (";
@@ -50,52 +48,107 @@ class insertar{
         $consultaEmergencia->bindParam(':contactoemergencia', $this->Nomb_Cont_Emerg);
         $consultaEmergencia->bindParam(':diremergencia', $this->Dir_Cont_Emerg);
         $consultaEmergencia->bindParam(':telefonoemergencia', $this->Tel_Cont_Emerg);
+        $consultaEmergencia->execute();
+        //--------------------------Seleccionar el ID de informacion de emergencia-----------------------
+        $sqlSeleccionContacto =
+            "SELECT Pk_Inf_Emergencia FROM informacion_emergencia  WHERE Nomb_Cont_Emerg ='".$this->Nomb_Cont_Emerg."' ";
+        $consultaContacto = $conexion->prepare($sqlSeleccionContacto);
+        $consultaContacto->execute();
+        $resultado = $consultaContacto->fetch(PDO::FETCH_COLUMN,0); //En resultado se almacena el ID de contacto de emergencia
+        var_dump($resultado);
+        //-------------------------Seleccionar el cum de regnal------------------------------------------
+        $sqlSeleccionRegnal =
+        "SELECT CUM FROM regnal  WHERE CUM ='".$this->CUM."' ";
+    $consultaRegnal = $conexion->prepare($sqlSeleccionRegnal);
+    $consultaRegnal->execute();
+    $resultado2 = $consultaRegnal->fetch(PDO::FETCH_ASSOC); //En resultado2 se almacena el CUM de regnal
 
-
-        $sql = "INSERT INTO usuario (";
-	    $sql .= "CUM, Nombre, A_Pat, A_Mat, Sexo, F_Naci, Vigencia, Provincia, Grupo_S, Seccion, Scouter_Responsable, Tel_Cel, Password, Estatura, Peso, Color_Cabello, Color_Ojos, Color_Piel, Tipo_Sangre, Donar_Sangre, Dieta, Alcohol, Fumador, Uso_Sustancias, Fam_Diabetes, Fam_Hipertension, Afecciones_Frio_Calor, Fk_Info_Emergencia, Fk_Regnal, Tipo_Usuario";
-	    $sql .= ") VALUES (";
-	    $sql .= ":cum, :nombre, :ap_pa, :ap_ma, :sexo,:fechadenacimiento,:vigenciascout,:provincia,:grupo,:seccion,:scouterR,:celular,:passuser,:estatura,:peso,:color-cabello,:color-ojos,:color-piel,:tiposangre,:donarsangre,:dieta,:bebealcohol,:fuma,:suatanciasrecreativas,:familiadiabetes,:familiahipertension,:afecciones,'1',:cum,:tipouser)";
-        $consulta = $conexion->prepare($sql);
-        $consulta->bindParam(':cum', $this->CUM);
-        $consulta->bindParam(':nombre', $this->Nombre);
-        $consulta->bindParam(':ap_pa', $this->A_Pat);
-        $consulta->bindParam(':ap_ma', $this->A_Mat);
-        $consulta->bindParam(':sexo', $this->Sexo);
-        $consulta->bindParam(':fechadenacimiento', $this->F_Nac);
-        $consulta->bindParam(':vigencia', $this->Vigencia);
-        $consulta->bindParam(':provincia', $this->Provincia);
-        $consulta->bindParam(':grupo', $this->Grupo_S);
-        $consulta->bindParam(':seccion', $this->Seccion);
-        $consulta->bindParam(':scouterR', $this->Scouter_Responsable);
-        $consulta->bindParam(':celular', $this->Tel_Cel);
-        $consulta->bindParam(':passuser', $this->Password);
-        $consulta->bindParam(':estatura', $this->Estatura);
-        $consulta->bindParam(':peso', $this->Peso);
-        $consulta->bindParam(':color-cabello', $this->Color_Cabello);
-        $consulta->bindParam(':color-ojos', $this->Color_Ojos);
-        $consulta->bindParam(':color-piel', $this->Color_Piel);
-        $consulta->bindParam(':tiposangre', $this->Tipo_Sangre);
-        $consulta->bindParam(':donarsangre', $this->Donar_Sangre);
-        $consulta->bindParam(':dieta', $this->Dieta);
-        $consulta->bindParam(':bebealcohol', $this->Alcohol);
-        $consulta->bindParam(':fuma', $this->Fumador);
-        $consulta->bindParam(':sustanciasrecreativas', $this->Uso_Sustancias);
-        $consulta->bindParam(':familiadiabetes', $this->Fam_Diabetes);
-        $consulta->bindParam(':familiahipertension', $this->Fam_Hipertension);
-        $consulta->bindParam(':afecciones', $this->Afecciones_Frio_Calor);
-        $consulta->bindParam(':infoemerg', $this->Fk_Info_Emergencia);
-        $consulta->bindParam(':regnalito', $this->Fk_Regnal);
-        $consulta->bindParam(':tipouser', $this->Tipo_Usuario);
-
-        if (!consulta || !consultaEmergencia)
-        {
-            $this->mensaje = $mensaje = $conexion->errorInfo();
-        }else {
-            $consultaEmergencia->execute();
-            $consulta->execute();
-            $this->mensaje = "Se hizo el insert";
-        }
+            echo "hola";
+        var_dump($resultado2["CUM"]);
+        echo "hola despues";
+        $sql = 
+        "INSERT INTO usuario 
+            (
+                CUM, 
+                Nombre, 
+                A_Pat, 
+                A_Mat, 
+                Sexo, 
+                F_Naci, 
+                Vigencia, 
+                Provincia, 
+                Grupo_S, 
+                Seccion, 
+                Scouter_Responsable,
+                Tel_Cel, 
+                Password, 
+                Estatura, 
+                Peso, 
+                Color_Cabello, 
+                Color_Ojos, 
+                Color_Piel, 
+                Tipo_Sangre, 
+                Donar_Sangre, 
+                Dieta, 
+                Alcohol,
+                Fumador, 
+                Uso_Sustancias,
+                Fam_Diabetes, 
+                Fam_Hipertension, 
+                Afecciones_Frio_Calor, 
+                Fk_Info_Emergencia, 
+                Fk_Regnal, 
+                Tipo_Usuario
+            )
+        VALUES 
+            (
+                ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?
+            )
+        ";
+$consulta = $conexion->prepare($sql);
+if (!$consulta /*|| $consultaEmergencia*/)  
+{
+    $this->mensaje = $mensaje = $conexion->errorInfo();
+}else {
+/*Datos que pasaremos en el execute*/   
+$arrParams = array 
+        (
+            $this->CUM,
+            $this->Nombre,
+            $this->A_Pat,
+            $this->A_Mat,
+            $this->Sexo,
+            $this->F_Nac,
+            $this->Vigencia,
+            $this->Provincia,
+            $this->Grupo_S,
+            $this->Seccion,
+            $this->Scouter_Responsable,
+            $this->Tel_Cel,
+            $this->Password,
+            $this->Estatura,
+            $this->Peso,
+            $this->Color_Cabello,
+            $this->Color_Ojos,
+            $this->Color_Piel,
+            $this->Tipo_Sangre,
+            $this->Donar_Sangre,
+            $this->Dieta,
+            $this->Alcohol,
+            $this->Fumador,
+            $this->Uso_Sustancias,
+            $this->Fam_Diabetes,
+            $this->Fam_Hipertension,
+            $this->Afecciones_Frio_Calor,
+            $resultado,
+            $resultado2["CUM"],
+            $this->Tipo_Usuario
+        );
+        var_dump($arrParams);
+    $consulta->execute($arrParams);
+    //var_dump($consulta);
+    $this->mensaje = "Se hizo el insert"; //deberías verificar con affected_rows
+        }   
 
     }
 

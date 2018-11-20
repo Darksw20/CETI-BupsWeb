@@ -82,6 +82,131 @@ function btnDelUser() {
     })
 }
 
+//verTalleres
+$(document).ready(function(){
+    function fetch_data_taller(){
+      $('#bTalleres').submit(function(e){
+            e.preventDefault(); //Se previene el envio del formulario
+        })
+
+        $('#buscarTaller').keyup(function(){
+            var envio = $('#buscarTaller').val(); //Se obtiene el valor del input
+
+            $.ajax({
+                url: 'src/verTalleres.php', //Lugar a donde se envia la variable
+                method: "POST",
+                data: ('verStockTaller='+envio), //Variable que recive el PHP
+                success: function(resp) {
+                    if(resp != "") {
+                        $('#live_data_taller').html(resp); //Muestra la consulta en el div con el id="verDivStock"
+                    }
+                }
+            })
+        })
+
+    }
+    fetch_data_taller();
+	function edit_data_taller(id, text, column_name)
+    {
+        $.ajax({
+            url:"src/editTaller.php",
+            method:"POST",
+            data:{id:id, text:text, column_name:column_name},
+            dataType:"text",
+            success:function(data){
+                //alert(data);
+      				$('#result_taller').html("<div class='alert alert-success' role='alert' >"+data+"</div>");
+            }
+        });
+    }
+    $(document).on('blur', '.Encargado', function(){
+        var id = $(this).data("id1");
+        var Encargado = $(this).text();
+        edit_data_taller(id, Encargado, "Encargado");
+    });
+    $(document).on('blur', '.Descripcion', function(){
+        var id = $(this).data("id2");
+        var Descripcion = $(this).text();
+        edit_data_taller(id,Descripcion, "Descripcion");
+    });
+    $(document).on('blur', '.TallerAct', function(){
+        var id = $(this).data("id3");
+        var TallerAct = $(this).text();
+        edit_data_taller(id,TallerAct, "TallerAct");
+    });
+    $(document).on('blur', '.Limite', function(){
+        var id = $(this).data("id4");
+        var Limite = $(this).text();
+        edit_data_taller(id,Limite, "Limite");
+    });
+    $(document).on('blur', '.Horario', function(){
+        var id = $(this).data("id5");
+        var Horario = $(this).text();
+        edit_data_taller(id,Horario, "Horario");
+    });
+    $(document).on('blur', '.Horario_Fin', function(){
+        var id = $(this).data("id6");
+        var Horario_Fin = $(this).text();
+        edit_data_taller(id,Horario_Fin, "Horario_Fin");
+    });
+    $(document).on('blur', '.Nombre_Taller', function(){
+        var id = $(this).data("id7");
+        var Nombre_Taller = $(this).text();
+        edit_data_taller(id,Nombre_Taller, "Nombre_Taller");
+    });
+});
+//modificarStockProveedor
+
+//verTalleres
+$(document).ready(function(){
+    function fetch_data_user(){
+      $('#buscarUser').submit(function(e){
+            e.preventDefault(); //Se previene el envio del formulario
+        })
+
+        $('#buscarUsuario').keyup(function(){
+            var envio = $('#buscarUsuario').val(); //Se obtiene el valor del input
+
+            $.ajax({
+                url: 'src/verUsuarios.php', //Lugar a donde se envia la variable
+                method: "POST",
+                data: ('verStockUsuario='+envio), //Variable que recive el PHP
+                success: function(resp) {
+                    if(resp != "") {
+                        $('#live_data_user').html(resp); //Muestra la consulta en el div con el id="verDivStock"
+                    }
+                }
+            })
+        })
+
+    }
+    fetch_data_user();
+	function edit_data_user(id, text, column_name)
+    {
+        $.ajax({
+            url:"src/editUser.php",
+            method:"POST",
+            data:{id:id, text:text, column_name:column_name},
+            dataType:"text",
+            success:function(data){
+                //alert(data);
+      				$('#result_user').html("<div class='alert alert-success' role='alert' >"+data+"</div>");
+            }
+        });
+    }
+    $(document).on('blur', '.Tipo_Usuario', function(){
+        var id = $(this).data("id1");
+        var Tipo_Usuario = $(this).text();
+        edit_data_user(id, Tipo_Usuario, "Tipo_Usuario");
+    });
+    $(document).on('blur', '.Password', function(){
+        var id = $(this).data("id5");
+        var Password = $(this).text();
+        edit_data_user(id,Password, "Password");
+    });
+});
+//modificarStockProveedor
+
 //modificarStockProveedor
 $(document).ready(function(){
     function fetch_data(){
@@ -125,17 +250,19 @@ $(document).ready(function(){
         edit_data(id, Nombre, "Nombre");
     });
     $(document).on('blur', '.Precio_Compra', function(){
-        var id = $(this).data("id3");
+        var id = $(this).data("id2");
         var Precio_Compra = $(this).text();
         edit_data(id,Precio_Compra, "Precio_Compra");
     });
     $(document).on('blur', '.Caracteristicas', function(){
-        var id = $(this).data("id4");
+        var id = $(this).data("id3");
         var Caracteristicas = $(this).text();
         edit_data(id,Caracteristicas, "Caracteristicas");
     });
 });
 //modificarStockProveedor
+
+
 
 function verGanciasPProducto() {
     $(function(){

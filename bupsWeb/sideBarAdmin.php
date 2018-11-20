@@ -8,22 +8,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/bootstrap 4/bootstrap.css">
   <link rel="stylesheet" href="css/bootstrap 4/adicionalAdmin.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
-    crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-    crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="js/ajax.js" charset="utf-8"></script>
 </head>
 
 <body>
   <div class="wrapper">
     <!-- Sidebar  -->
     <nav id="sidebar" class="shadow-lg barral">
-      <div id ="sidebarCollapse" class="sidebar-header shadow barral">
+      <div id="sidebarCollapse" class="sidebar-header shadow barral">
         <h3 class="text-center">EEAS Administrador</h3>
         <strong><i class="fas fa-user-circle fa-lg"></i></strong>
       </div>
@@ -35,26 +35,12 @@
           </a>
         </li>
         <li>
-          <a href="#AdminSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle text-dark">
-            <i class="fas fa-address-card fa-lg"></i>Gestionar Personal
+          <a href="#" onclick="toggleVisibility('userEdit')" class="text-dark">
+            <i class="fas fa-address-card fa-lg"></i>Gestionar personal
           </a>
-          <ul class="collapse list-unstyled" id="AdminSubmenu">
-            <li>
-              <a href="#" onclick="toggleVisibility('organizador')" class="text-dark">Organizador</a>
-            </li>
-            <li>
-              <a href="#" onclick="toggleVisibility('staff')" class="text-dark">Staff</a>
-            </li>
-            <li>
-              <a href="#" onclick="toggleVisibility('serviciomedico')" class="text-dark">ServicioMedico</a>
-            </li>
-            <li>
-              <a href="#" onclick="toggleVisibility('usuario')" class="text-dark">Usuario</a>
-            </li>
-          </ul>
         </li>
         <li>
-          <a href="#" onclick="toggleVisibility('adminEvento')" class="dropdown-toggle text-dark">
+          <a href="#" onclick="toggleVisibility('adminEvento')" class="text-dark">
             <i class="fas fa-calendar fa-lg"></i>Evento
           </a>
         </li>
@@ -86,7 +72,7 @@
 
     <!-- Page Content  -->
     <div id="content" style="background: linear-gradient(to top left, #6600ff 0%, #cc99ff 100%);">
-      <div class="container" >
+      <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-white shadow barral" style="background: linear-gradient(to top left, #6600ff 0%, #cc33ff 100%)">
           <div class="container-fluid">
             <h4 class="mx-auto">Sistema de Encuentro, Expresion y Arte Scout. </h4>
@@ -98,308 +84,42 @@
       <div id="adminDash" style="display: none; padding-top: 3rem;">
         <div class="card w-100 mx-auto shadow">
           <div class="card-body">
-            <canvas id="myChart"></canvas>            
+            <canvas id="myChart"></canvas>
           </div>
           <!--CARD BODY-->
         </div>
         <!--CARD-->
       </div>
 
-      <div id="organizador" style="display: none; padding-top: 3rem;">
+      <div id="userEdit" style="display: none; padding-top: 3rem;">
 
         <div class="card w-100 mx-auto shadow">
           <div class="card-header bg-white">
-            <select class="custom-select" id="formSelect0">
-              <option value="0">Agregar Organizador</option>
-              <option value="1">Editar Organizador</option>
-            </select>
+            <h4 class="text-center">Editar usuario</h4>
           </div>
 
           <div class="card-body">
-            <div id="0" class="formulario 0">
-                <form>
-                    <div class="form-row">
-                      <label for="eliminarUsuario">Nombre de usuario</label>
-                      <div class="input-group">
-                        <input type="text" class="form-control" id="eliminarUsuario" placeholder="nombre del usuario">
-                        <div class="input-group-append">
-                          <button class="btn btn-primary" type="submit">buscar</button>
-                        </div>
-                      </div>
-                    </div>
-                  </form>
-                  <div class="table-responsive" style="padding-top: 2rem;">
-                    <table class="table table-hover table-bordered">
-                      <thead class="thead-light">
-                        <tr>
-                          <th scope="col">Tipo de usuario</th>
-                          <th scope="col">CUM</th>
-                          <th scope="col">Nombre</th>
-                          <th scope="col">Apellido Paterno</th>
-                          <th scope="col">Apellido Materno</th>
-                          <th scope="col">Editar</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr data-toggle="modal" data-target="#modalConfirmacionorganizador">
-                          <td>Organizador(1)</td>
-                          <td>JAL0720230</td>
-                          <td>Ricardo</td>
-                          <td>Navarro</td>
-                          <td>Viña</td>
-                          <td> <i onClick= "modalConfiramacionorganizador"class="fas fa-edit fa-lg"></i> <i class="fas fa-minus-circle fa-lg"></i></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <button class="btn btn-primary" type="submit">Guardar</button>
-            </div>
-            <!--formulario 0-->
-
-            <div id="1" class="formulario 1" style="display: none;">
-              <form>
-                <div class="form-row">
-                  <label for="eliminarUsuario">Nombre de usuario</label>
-                  <div class="input-group">
-                    <input type="text" class="form-control" id="eliminarUsuario" placeholder="Nombre del uusar">
-                    <div class="input-group-append">
-                      <button class="btn btn-primary" type="submit">buscar</button>
-                    </div>
-                  </div>
+            <form action="src/verUsuarios.php" method="post" id="buscarUser">
+              <div class="form-row">
+                <label for="buscarP">Nombre de usuarios</label>
+                <div class="input-group">
+                  <input type="text" class="form-control" id="buscarUsuario" name="buscarUsuario" placeholder="Nombre">
                 </div>
-              </form>
-              <div class="table-responsive" style="padding-top: 2rem;">
-                <table class="table table-hover table-bordered">
-                  <thead class="thead-light">
-                    <tr>
-                      <th scope="col">Tipo de usuario</th>
-                      <th scope="col">CUM</th>
-                      <th scope="col">Nombre</th>
-                      <th scope="col">Apellido Paterno</th>
-                      <th scope="col">Apellido Materno</th>
-                      <th scope="col">Editar</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr data-toggle="modal" data-target="#modalConfirmacionorganizador">
-                      <td>Organizador(1)</td>
-                      <td>JAL0720230</td>
-                      <td>Ricardo</td>
-                      <td>Navarro</td>
-                      <td>Viña</td>
-                      <td> <i onClick= "modalConfiramacionorganizador"class="fas fa-edit fa-lg"></i> <i class="fas fa-minus-circle fa-lg"></i></td>
-                    </tr>
-                  </tbody>
-                </table>
-                <button class="btn btn-primary" type="submit">Guardar</button>
               </div>
-              
-            </div>
-            <!--formulario 1-->
+            </form>
+            <form method="post">
+              <div class="table-responsive" style="padding-top: 2rem;">
+                <div id="live_data_user" style="padding-top: 1.2rem;"></div>
+                <span id="result_user" style="padding-top: 1.2rem;"></span>
+              </div>
+            </form>
+            <!--tabla-->
           </div>
           <!--CARD BODY-->
         </div>
         <!--CARD-->
       </div>
       <!--organizador-->
-
-
-      <div id="staff" style="display: none; padding-top: 3rem;">
-
-        <div class="card w-100 mx-auto shadow">
-          <div class="card-header bg-white">
-            <select class="custom-select" id="formSelect1">
-              <option value="01">Agregar staff</option>
-              <option value="11">Editar staff</option>
-            </select>
-          </div>
-
-          <div class="card-body">
-            <div id="01" class="formulario 0">
-                <form>
-                    <div class="form-row">
-                      <label for="eliminarUsuario">Nombre de usuarios</label>
-                      <div class="input-group">
-                        <input type="text" class="form-control" id="eliminarUsuario" placeholder="nombre del usuario">
-                        <div class="input-group-append">
-                          <button class="btn btn-primary" type="submit">buscar</button>
-                        </div>
-                      </div>
-                    </div>
-                  </form>
-                  <div class="table-responsive" style="padding-top: 2rem;">
-                    <table class="table table-hover table-bordered">
-                      <thead class="thead-light">
-                        <tr>
-                          <th scope="col">Tipo de usuario</th>
-                          <th scope="col">CUM</th>
-                          <th scope="col">Nombre</th>
-                          <th scope="col">Apellido Paterno</th>
-                          <th scope="col">Apellido Materno</th>
-                          <th scope="col">Editar</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr data-toggle="modal" data-target="#modalConfirmacionstaff">
-                          <td>staff(2)</td>
-                          <td>JAL0720230</td>
-                          <td>Ricardo</td>
-                          <td>Navarro</td>
-                          <td>Viña</td>
-                          <td> <i onClick= "modalConfiramacionstaff"class="fas fa-edit fa-lg"></i> <i class="fas fa-minus-circle fa-lg"></i></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <button class="btn btn-primary" type="submit">Guardar</button>
-            </div>
-            <!--formulario 0-->
-
-            <div id="11" class="formulario 1" style="display: none;">
-              <form>
-                <div class="form-row">
-                  <label for="eliminarUsuario">Nombre de usuario</label>
-                  <div class="input-group">
-                    <input type="text" class="form-control" id="eliminarUsuario" placeholder="Nombre del uusar">
-                    <div class="input-group-append">
-                      <button class="btn btn-primary" type="submit">buscar</button>
-                    </div>
-                  </div>
-                </div>
-              </form>
-              <div class="table-responsive" style="padding-top: 2rem;">
-                <table class="table table-hover table-bordered">
-                  <thead class="thead-light">
-                    <tr>
-                      <th scope="col">Tipo de usuario</th>
-                      <th scope="col">CUM</th>
-                      <th scope="col">Nombre</th>
-                      <th scope="col">Apellido Paterno</th>
-                      <th scope="col">Apellido Materno</th>
-                      <th scope="col">Editar</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr data-toggle="modal" data-target="#modalConfirmacionstaff">
-                      <td>staff(2)</td>
-                      <td>JAL0720230</td>
-                      <td>Ricardo</td>
-                      <td>Navarro</td>
-                      <td>Viña</td>
-                      <td> <i onClick= "modalConfiramacionstaff"class="fas fa-edit fa-lg"></i> <i class="fas fa-minus-circle fa-lg"></i></td>
-                    </tr>
-                  </tbody>
-                </table>
-                <button class="btn btn-primary" type="submit">Guardar</button>
-              </div>
-              
-            </div>
-            <!--formulario 1-->
-          </div>
-          <!--CARD BODY-->
-        </div>
-        <!--CARD-->
-      </div>
-      <!--staff-->
-
-
-      <div id="serviciomedico" style="display: none; padding-top: 3rem;">
-
-        <div class="card w-100 mx-auto shadow">
-          <div class="card-header bg-white">
-            <select class="custom-select" id="formSelect2">
-              <option value="011">Agregar staff</option>
-              <option value="111">Editar staff</option>
-            </select>
-          </div>
-
-          <div class="card-body">
-            <div id="011" class="formulario 0">
-                <form>
-                    <div class="form-row">
-                      <label for="eliminarUsuario">Nombre de usuarios</label>
-                      <div class="input-group">
-                        <input type="text" class="form-control" id="eliminarUsuario" placeholder="nombre del usuario">
-                        <div class="input-group-append">
-                          <button class="btn btn-primary" type="submit">buscar</button>
-                        </div>
-                      </div>
-                    </div>
-                  </form>
-                  <div class="table-responsive" style="padding-top: 2rem;">
-                    <table class="table table-hover table-bordered">
-                      <thead class="thead-light">
-                        <tr>
-                          <th scope="col">Tipo de usuario</th>
-                          <th scope="col">CUM</th>
-                          <th scope="col">Nombre</th>
-                          <th scope="col">Apellido Paterno</th>
-                          <th scope="col">Apellido Materno</th>
-                          <th scope="col">Editar</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr data-toggle="modal" data-target="#modalConfirmacionserviciomedico">
-                          <td>servicioMedico(3)</td>
-                          <td>JAL0720230</td>
-                          <td>Ricardo</td>
-                          <td>Navarro</td>
-                          <td>Viña</td>
-                          <td> <i onClick= "modalConfiramacionserviciomedico"class="fas fa-edit fa-lg"></i> <i class="fas fa-minus-circle fa-lg"></i></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <button class="btn btn-primary" type="submit">Guardar</button>
-            </div>
-            <!--formulario 0-->
-
-            <div id="111" class="formulario 1" style="display: none;">
-              <form>
-                <div class="form-row">
-                  <label for="eliminarUsuario">Nombre de usuario</label>
-                  <div class="input-group">
-                    <input type="text" class="form-control" id="eliminarUsuario" placeholder="Nombre del uusar">
-                    <div class="input-group-append">
-                      <button class="btn btn-primary" type="submit">buscar</button>
-                    </div>
-                  </div>
-                </div>
-              </form>
-              <div class="table-responsive" style="padding-top: 2rem;">
-                <table class="table table-hover table-bordered">
-                  <thead class="thead-light">
-                    <tr>
-                      <th scope="col">Tipo de usuario</th>
-                      <th scope="col">CUM</th>
-                      <th scope="col">Nombre</th>
-                      <th scope="col">Apellido Paterno</th>
-                      <th scope="col">Apellido Materno</th>
-                      <th scope="col">Editar</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr data-toggle="modal" data-target="#modalConfirmacionserviciomedico">
-                      <td>servicioMedico(3)</td>
-                      <td>JAL0720230</td>
-                      <td>Ricardo</td>
-                      <td>Navarro</td>
-                      <td>Viña</td>
-                      <td> <i onClick= "modalConfiramacionserviciomedico"class="fas fa-edit fa-lg"></i> <i class="fas fa-minus-circle fa-lg"></i></td>
-                    </tr>
-                  </tbody>
-                </table>
-                <button class="btn btn-primary" type="submit">Guardar</button>
-              </div>
-              
-            </div>
-            <!--formulario 1-->
-          </div>
-          <!--CARD BODY-->
-        </div>
-        <!--CARD-->
-      </div>
-      <!--serviciomedico-->
 
       <div id="usuario" style="display: none; padding-top: 3rem;">
         <div class="card w-100 mx-auto shadow">
@@ -594,11 +314,11 @@
             <h4>Carta Gantt</h4>
           </div>
           <div class="card-body">
-              <div class="embed-responsive embed-responsive-16by9">
-              <iframe class="embed-responsive-item" src="imagenes/Sistema de Control para el Encuentro de Expresion y Arte Scout.pdf" ></iframe>
-               </div>
-              <!--carta gantt-->      
-          </div> 
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item" src="imagenes/Sistema de Control para el Encuentro de Expresion y Arte Scout.pdf"></iframe>
+            </div>
+            <!--carta gantt-->
+          </div>
           <!--Card-body-->
         </div>
         <!--CARD-->
@@ -606,32 +326,32 @@
       <!--Carta Gantt-->
 
       <div id="adminEvento" style="display: none; padding-top: 3rem;">
-          <div class="card w-100 mx-auto shadow">
-            <div class="card-header header bg-white text-center">
-              <h4>Buscar Usuario</h4>
-            </div>
-            <div class="card-body">
-              <form>
-                <div class="form-row">
-                  <label for="eliminarUsuario">Nombre de usuario</label>
-                  <div class="input-group">
-                    <input type="text" class="form-control mb-2" id="eliminarUsuario" placeholder="JAL0720230">
-                    <div class="input-group-append">
-                      <button class="btn btn-primary mb-2" type="submit">Buscar</button>
-                    </div>
+        <div class="card w-100 mx-auto shadow">
+          <div class="card-header header bg-white text-center">
+            <h4>Buscar Usuario</h4>
+          </div>
+          <div class="card-body">
+            <form>
+              <div class="form-row">
+                <label for="eliminarUsuario">Nombre de usuario</label>
+                <div class="input-group">
+                  <input type="text" class="form-control mb-2" id="eliminarUsuario" placeholder="JAL0720230">
+                  <div class="input-group-append">
+                    <button class="btn btn-primary mb-2" type="submit">Buscar</button>
                   </div>
                 </div>
-              </form>
-              <div class="embed-responsive embed-responsive-16by9 ">
-                  <iframe class="embed-responsive-item" src ="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3115.6875777672344!2d-103.39525917374276!3d20.708307817834683!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428ae4c0728a2a3%3A0x675a6846f2b532c5!2sBosque+Colomos!5e0!3m2!1ses!2smx!4v1540356265341"></iframe>
-                   </div>
-              <!--tabla-->
+              </div>
+            </form>
+            <div class="embed-responsive embed-responsive-16by9 ">
+              <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3115.6875777672344!2d-103.39525917374276!3d20.708307817834683!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428ae4c0728a2a3%3A0x675a6846f2b532c5!2sBosque+Colomos!5e0!3m2!1ses!2smx!4v1540356265341"></iframe>
             </div>
-            <!--Card-body-->
+            <!--tabla-->
           </div>
-          <!--CARD-->
+          <!--Card-body-->
         </div>
-        <!--mapa-->
+        <!--CARD-->
+      </div>
+      <!--mapa-->
 
     </div>
     <!--Admin dash-->
@@ -721,12 +441,12 @@
 
   <script type="text/javascript">
     //control de panel lateral
-    $(document).ready(function () {
+    $(document).ready(function() {
 
-      $('#sidebarCollapse').on('click', function () {
+      $('#sidebarCollapse').on('click', function() {
         $('#sidebar').toggleClass('active');
       });
-      $('#content').on('click', function () {
+      $('#content').on('click', function() {
         $('#sidebar').addClass('active');
       });
 
@@ -734,7 +454,7 @@
     //control de panel lateral
 
     //Mostrar la opcion de panel lateral
-    var divs = ["organizador", "staff", "serviciomedico", "usuario", "cartagantt", "adminEvento", "nuevoReporte", "reportes", "inventario", "adminDash"];
+    var divs = ["userEdit", "usuario", "cartagantt", "adminEvento", "nuevoReporte", "reportes", "inventario", "adminDash"];
     var visibleDivId = null;
 
     function toggleVisibility(divId) {
@@ -761,8 +481,8 @@
     //Mostrar la opcion de panel lateral
 
     //Seleccionar formulario
-    $(function () {
-      $('#formSelect0').change(function () {
+    $(function() {
+      $('#formSelect0').change(function() {
         $('.formulario').hide();
         $('#' + $(this).val()).show();
       });
@@ -770,44 +490,43 @@
     //seleccionar formulario
 
     //Seleccionar formulario 2
-    $(function () {
-      $('#formSelect1').change(function () {
+    $(function() {
+      $('#formSelect1').change(function() {
         $('.formulario').hide();
         $('#' + $(this).val()).show();
       });
     });
-      //seleccionar formulario 2
+    //seleccionar formulario 2
 
-          //Seleccionar formulario 3
-    $(function () {
-      $('#formSelect2').change(function () {
+    //Seleccionar formulario 3
+    $(function() {
+      $('#formSelect2').change(function() {
         $('.formulario').hide();
         $('#' + $(this).val()).show();
       });
     });
-      //seleccionar formulario 3
+    //seleccionar formulario 3
 
-//graficas
-var ctx = document.getElementById('myChart').getContext('2d');
-var chart = new Chart(ctx, {
-    // The type of chart we want to create
-    type: 'line',
+    //graficas
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+      // The type of chart we want to create
+      type: 'line',
 
-    // The data for our dataset
-    data: {
+      // The data for our dataset
+      data: {
         labels: ["Agosto", "Septiembre", "Octubre", "Novimbre", "Diciembre"],
         datasets: [{
-            label: "39° EEAS 'Personas Registradas' ",
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: [0, 1000, 4350, 7600, 11200],
+          label: "39° EEAS 'Personas Registradas' ",
+          backgroundColor: 'rgb(255, 99, 132)',
+          borderColor: 'rgb(255, 99, 132)',
+          data: [0, 1000, 4350, 7600, 11200],
         }]
-    },
+      },
 
-    // Configuration options go here
-    options: {}
-});
-
+      // Configuration options go here
+      options: {}
+    });
   </script>
   <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
 </body>

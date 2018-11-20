@@ -24,7 +24,7 @@
                               <tr>
                               <td>'.$row["PK_Material"].'</td>
                                  <td class="Nombre" data-id1="'.$row["PK_Material"].'" contenteditable>'.$row["Nombre"].'</td>
-                                 <td class="Precio" data-id2="'.$row["PK_Material"].'" contenteditable>'.$row["Precio_Compra"].'</td>
+                                 <td class="Precio_Compra" data-id2="'.$row["PK_Material"].'" contenteditable>'.$row["Precio_Compra"].'</td>
                                  <td class="Caracteristicas" data-id3="'.$row["PK_Material"].'" contenteditable>'.$row["Caracteristicas"].'</td>
                               </tr>';
                 }

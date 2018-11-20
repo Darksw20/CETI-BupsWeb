@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
 
@@ -17,32 +16,37 @@
 </head>
 
 <body>
-    <div class="card w-100 mx-50">
-          <div class ="card-body">
-              <div class="tab-content">
-                <div id="login" class="container tab-pane active">
-                  <br>
-                  <form action="../src/proces-lgn.php" method="post">
-                    <div class="form-group">
-                      <label for="text">CUM:</label>
-                      <input type="text" class="form-control" name="cum" required>
-                    </div>
-                    <div class="form-group">
-                      <label for="pwd">Contraseña:</label>
-                      <input type="password" class="form-control" name="password" required>
-                    </div>
-                    <div class="form-group form-check">
-                      <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" name="checkbox"> Recordarme
-                      </label>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Iniciar sesión</button>
-                  </form>
-                  </div>
-               <div id="signup" class="container tab-pane fade">
-         </div>
+
+  <div class="container">
+    <div class="card shadow-lg" style="margin-top: 3rem;">
+      <div class="card-body">
+        <div class="tab-content">
+          <div id="login" class="container tab-pane active">
+            <br>
+            <form action="../src/proces-lgn.php" method="post">
+              <div class="form-group">
+                <label for="text">CUM:</label>
+                <input type="text" class="form-control" name="cum" required>
+              </div>
+              <div class="form-group">
+                <label for="pwd">Contraseña:</label>
+                <input type="password" class="form-control" name="password" required>
+              </div>
+              <div class="form-group form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="checkbox" name="checkbox"> Recordarme
+                </label>
+              </div>
+              <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+            </form>
+          </div>
+          <div id="signup" class="container tab-pane fade">
+          </div>
+        </div>
       </div>
+    </div>
+  </div>
 
-  </body>
+</body>
 
-  </html>
+</html>

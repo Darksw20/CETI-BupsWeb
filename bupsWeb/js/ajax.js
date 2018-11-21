@@ -155,14 +155,11 @@ $(document).ready(function(){
         edit_data_taller(id,Nombre_Taller, "Nombre_Taller");
     });
 });
-//ver talleres
+//verTalleres
 
-
-
-
-//ver incidentes
+//verIncidentes
 $(document).ready(function(){
-    function fetch_data_taller(){
+    function fetch_data_incidente(){
       $('#bIncidentes').submit(function(e){
             e.preventDefault(); //Se previene el envio del formulario
         })
@@ -183,65 +180,65 @@ $(document).ready(function(){
         })
 
     }
-    fetch_data_taller();
-	function edit_data_taller(id, text, column_name)
-    {
-        $.ajax({
-            url:"src/editTaller.php",
-            method:"POST",
-            data:{id:id, text:text, column_name:column_name},
-            dataType:"text",
-            success:function(data){
-                //alert(data);
-      				$('#result_taller').html("<div class='alert alert-success' role='alert' >"+data+"</div>");
-            }
-        });
-    }
-    $(document).on('blur', '.Encargado', function(){
-        var id = $(this).data("id1");
-        var Encargado = $(this).text();
-        edit_data_taller(id, Encargado, "Encargado");
-    });
-    $(document).on('blur', '.Descripcion', function(){
-        var id = $(this).data("id2");
-        var Descripcion = $(this).text();
-        edit_data_taller(id,Descripcion, "Descripcion");
-    });
-    $(document).on('blur', '.TallerAct', function(){
-        var id = $(this).data("id3");
-        var TallerAct = $(this).text();
-        edit_data_taller(id,TallerAct, "TallerAct");
-    });
-    $(document).on('blur', '.Limite', function(){
-        var id = $(this).data("id4");
-        var Limite = $(this).text();
-        edit_data_taller(id,Limite, "Limite");
-    });
-    $(document).on('blur', '.Horario', function(){
-        var id = $(this).data("id5");
-        var Horario = $(this).text();
-        edit_data_taller(id,Horario, "Horario");
-    });
-    $(document).on('blur', '.Horario_Fin', function(){
-        var id = $(this).data("id6");
-        var Horario_Fin = $(this).text();
-        edit_data_taller(id,Horario_Fin, "Horario_Fin");
-    });
-    $(document).on('blur', '.Nombre_Taller', function(){
-        var id = $(this).data("id7");
-        var Nombre_Taller = $(this).text();
-        edit_data_taller(id,Nombre_Taller, "Nombre_Taller");
-    });
+    fetch_data_incidente();
 });
-//ver incidentes
+//verIncidentes
 
+//verIncidentes
+$(document).ready(function(){
+    function fetch_data_incidente0(){
+      $('#bIncidentes0').submit(function(e){
+            e.preventDefault(); //Se previene el envio del formulario
+        })
 
+        $('#buscarIncidente0').keyup(function(){
+            var envio = $('#buscarIncidente0').val(); //Se obtiene el valor del input
 
+            $.ajax({
+                url: 'src/verIncidentes0.php', //Lugar a donde se envia la variable
+                method: "POST",
+                data: ('verStockIncidentes0='+envio), //Variable que recive el PHP
+                success: function(resp) {
+                    if(resp != "") {
+                        $('#live_data_incidente0').html(resp); //Muestra la consulta en el div con el id="verDivStock"
+                    }
+                }
+            })
+        })
 
+    }
+    fetch_data_incidente0();
+});
+//verIncidentes
 
+//verIncidentes
+$(document).ready(function(){
+    function fetch_data_reportes(){
+      $('#bReportes').submit(function(e){
+            e.preventDefault(); //Se previene el envio del formulario
+        })
 
+        $('#buscarReporte').keyup(function(){
+            var envio = $('#buscarReporte').val(); //Se obtiene el valor del input
 
-//verTalleres
+            $.ajax({
+                url: 'src/verReportes.php', //Lugar a donde se envia la variable
+                method: "POST",
+                data: ('verStockReportes='+envio), //Variable que recive el PHP
+                success: function(resp) {
+                    if(resp != "") {
+                        $('#live_data_reportes').html(resp); //Muestra la consulta en el div con el id="verDivStock"
+                    }
+                }
+            })
+        })
+
+    }
+    fetch_data_reportes();
+});
+//verIncidentes
+
+//verUsuarios
 $(document).ready(function(){
     function fetch_data_user(){
       $('#buscarUser').submit(function(e){
@@ -289,9 +286,9 @@ $(document).ready(function(){
         edit_data_user(id,Password, "Password");
     });
 });
-//modificarStockProveedor
+//verUsuarios
 
-//modificarStockProveedor
+//Inventario
 $(document).ready(function(){
     function fetch_data(){
       $('#buscarStockProv').submit(function(e){
@@ -344,7 +341,7 @@ $(document).ready(function(){
         edit_data(id,Caracteristicas, "Caracteristicas");
     });
 });
-//modificarStockProveedor
+//Inventario
 
 
 

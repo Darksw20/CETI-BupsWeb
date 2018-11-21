@@ -26,70 +26,81 @@ include('datos/conexion2.php');
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <script src="js/ajax.js" charset="utf-8"></script>
     <script>
-          var centesimas = 0;
-        var segundos = 0;
-        var minutos = 0;
-        var horas = 0;
-        function inicio () {
-          control = setInterval(cronometro,10);
-          document.getElementById("inicio").disabled = true;
-          document.getElementById("parar").disabled = false;
-          document.getElementById("continuar").disabled = true;
-          document.getElementById("reinicio").disabled = false;
+      var centesimas = 0;
+      var segundos = 0;
+      var minutos = 0;
+      var horas = 0;
+
+      function inicio() {
+        control = setInterval(cronometro, 10);
+        document.getElementById("inicio").disabled = true;
+        document.getElementById("parar").disabled = false;
+        document.getElementById("continuar").disabled = true;
+        document.getElementById("reinicio").disabled = false;
+      }
+
+      function parar() {
+        clearInterval(control);
+        document.getElementById("parar").disabled = true;
+        document.getElementById("continuar").disabled = false;
+      }
+
+      function reinicio() {
+        clearInterval(control);
+        centesimas = 0;
+        segundos = 0;
+        minutos = 0;
+        horas = 0;
+        Centesimas.innerHTML = ":00";
+        Segundos.innerHTML = ":00";
+        Minutos.innerHTML = ":00";
+        Horas.innerHTML = "00";
+        document.getElementById("inicio").disabled = false;
+        document.getElementById("parar").disabled = true;
+        document.getElementById("continuar").disabled = true;
+        document.getElementById("reinicio").disabled = true;
+      }
+
+      function cronometro() {
+        if (centesimas < 99) {
+          centesimas++;
+          if (centesimas < 10) {
+            centesimas = "0" + centesimas
+          }
+          Centesimas.innerHTML = ":" + centesimas;
         }
-        function parar () {
-          clearInterval(control);
-          document.getElementById("parar").disabled = true;
-          document.getElementById("continuar").disabled = false;
+        if (centesimas == 99) {
+          centesimas = -1;
         }
-        function reinicio () {
-          clearInterval(control);
-          centesimas = 0;
-          segundos = 0;
-          minutos = 0;
-          horas = 0;
-          Centesimas.innerHTML = ":00";
-          Segundos.innerHTML = ":00";
-          Minutos.innerHTML = ":00";
-          Horas.innerHTML = "00";
-          document.getElementById("inicio").disabled = false;
-          document.getElementById("parar").disabled = true;
-          document.getElementById("continuar").disabled = true;
-          document.getElementById("reinicio").disabled = true;
+        if (centesimas == 0) {
+          segundos++;
+          if (segundos < 10) {
+            segundos = "0" + segundos
+          }
+          Segundos.innerHTML = ":" + segundos;
         }
-        function cronometro () {
-          if (centesimas < 99) {
-            centesimas++;
-            if (centesimas < 10) { centesimas = "0"+centesimas }
-            Centesimas.innerHTML = ":"+centesimas;
-          }
-          if (centesimas == 99) {
-            centesimas = -1;
-          }
-          if (centesimas == 0) {
-            segundos ++;
-            if (segundos < 10) { segundos = "0"+segundos }
-            Segundos.innerHTML = ":"+segundos;
-          }
-          if (segundos == 59) {
-            segundos = -1;
-          }
-          if ( (centesimas == 0)&&(segundos == 0) ) {
-            minutos++;
-            if (minutos < 10) { minutos = "0"+minutos }
-            Minutos.innerHTML = ":"+minutos;
-          }
-          if (minutos == 59) {
-            minutos = -1;
-          }
-          if ( (centesimas == 0)&&(segundos == 0)&&(minutos == 0) ) {
-            horas ++;
-            if (horas < 10) { horas = "0"+horas }
-            Horas.innerHTML = horas;
-          }
+        if (segundos == 59) {
+          segundos = -1;
         }
-          
-  </script>
+        if ((centesimas == 0) && (segundos == 0)) {
+          minutos++;
+          if (minutos < 10) {
+            minutos = "0" + minutos
+          }
+          Minutos.innerHTML = ":" + minutos;
+        }
+        if (minutos == 59) {
+          minutos = -1;
+        }
+        if ((centesimas == 0) && (segundos == 0) && (minutos == 0)) {
+          horas++;
+          if (horas < 10) {
+            horas = "0" + horas
+          }
+          Horas.innerHTML = horas;
+        }
+      }
+    </script>
   </head>
 
   <body>
@@ -113,26 +124,22 @@ include('datos/conexion2.php');
             </a>
           </li>
           <li>
-            <a
-              href="#"
-              onclick="toggleVisibility('orgaEvento')"
-              class="dropdown-toggle text-dark"
-            >
+            <a href="#" onclick="toggleVisibility('orgaEvento')" class="dropdown-toggle text-dark">
               <i class="fas fa-calendar fa-lg"></i>Evento
             </a>
-              </li>
+          </li>
+          <li>
+            <a href="#" onclick="toggleVisibility('geolocalizacion')" class="text-dark">
+              <i class="fas fa-map-marker fa-lg"></i>Geolocalización
+            </a>
+          </li>
+          <li>
+            <a href="#talleresOrga" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle text-dark">
+              <i class="fas fa-address-card fa-lg"></i>Talleres y Torneos
+            </a>
+            <ul class="collapse list-unstyled" id="talleresOrga">
               <li>
-                <a href="#" onclick="toggleVisibility('geolocalizacion')" class="text-dark">
-                <i class="fas fa-map-marker fa-lg"></i>Geolocalización
-                </a>
-                </li>
-              <li>
-                <a href="#talleresOrga" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle text-dark">
-                  <i class="fas fa-address-card fa-lg"></i>Talleres y Torneos
-                </a>
-                <ul class="collapse list-unstyled" id="talleresOrga">
-                  <li>
-                    <a href="#" onclick="toggleVisibility('agregarTaller')" class="text-dark">Agregar Taller</a
+                <a href="#" onclick="toggleVisibility('agregarTaller')" class="text-dark">Agregar Taller</a
                 >
               </li>
               <li>
@@ -154,9 +161,9 @@ include('datos/conexion2.php');
             >
               <i class="fas fa-sticky-note fa-lg"></i>Reportes
             </a>
-                    <ul class="collapse list-unstyled" id="ReportesSubmenu">
-                      <li>
-                        <a href="#" onclick="toggleVisibility('añadirReporte')" class="text-dark">Nuevo</a
+                <ul class="collapse list-unstyled" id="ReportesSubmenu">
+                  <li>
+                    <a href="#" onclick="toggleVisibility('añadirReporte')" class="text-dark">Nuevo</a
                 >
               </li>
               <li>
@@ -177,13 +184,13 @@ include('datos/conexion2.php');
             >
               <i class="fas fa-archive fa-lg"></i>CartaGantt
             </a>
-                      </li>
-                      <li>
-                        <a href="src/proces-unlgn.php" class="text-dark">
-                          <i class="fas fa-user-circle fa-lg"></i>Cerrar sesión
-                        </a>
-                      </li>
-                    </ul>
+                  </li>
+                  <li>
+                    <a href="src/proces-unlgn.php" class="text-dark">
+                      <i class="fas fa-user-circle fa-lg"></i>Cerrar sesión
+                    </a>
+                  </li>
+                </ul>
       </nav>
 
       <!-- Page Content -->
@@ -241,32 +248,33 @@ include('datos/conexion2.php');
 
 
 
-            <!--agregar-->
-            <div id="añadirReporte" style="display: none; padding-top: 3rem;"> 
+        <!--agregar-->
+        <div id="añadirReporte" style="display: none; padding-top: 3rem;">
 
-                <div class="card w-100 mx-auto shadow">
-                <div class="card-header bg-white text-center">
-                <h4>Agregar Reporte</h4>
-                </div>
+          <div class="card w-100 mx-auto shadow">
+            <div class="card-header bg-white text-center">
+              <h4>Agregar Reporte</h4>
+            </div>
 
-                <div class="card-body">
-                <form action="src/insertarIncidente.php" method="post" id="myForm">
+            <div class="card-body">
+              <form action="src/insertarReporte.php" method="post" id="myForm">
                 <h6 class="text-primary">Datos de los Reportes</h6>
                 <hr>
                 <div class="form-row">
-                <div class="col-md-3 mb-2">
-                <label for="titulo">Titulo</label>
-                <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Titulo" required>
-                </div>
-                <div class="col-md-3 mb-2">
-                <label for="horaI">Hora</label>
-                <input type="date" class="form-control" id="horaI" name="horaI" placeholder="Hora" required>
-                </div>
-                <div class="col-md-3 mb-2">
-                <label for="userI">Usuario</label> <!-- Se necesita select para mostrar los usuarion-->
-                <select name="userI" class ="form-control"> 
-                            <?php
-                            
+                  <div class="col-md-3 mb-2">
+                    <label for="titulo">Titulo</label>
+                    <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Titulo" required>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <label for="horaI">Hora</label>
+                    <input type="date" class="form-control" id="horaI" name="horaI" placeholder="Hora" required>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <label for="userI">Usuario</label>
+                    <!-- Se necesita select para mostrar los usuarion-->
+                    <select name="userI" class="form-control">
+                      <?php
+
                                 include('datos/conexion2.php');
 
                                 $sql = "SELECT * FROM usuario ORDER BY CUM";
@@ -278,15 +286,16 @@ include('datos/conexion2.php');
                                      <option value=".$incidente.">$incidente</option>
                                      ";
                                 }
-                            
+
                             ?>
-                        </select>
-                </div>
-                <div class="col-md-3 mb-2">
-                <label for="tipoI">Tipo</label><!-- Se necesita select para mostrar los incidentes-->
-                        <select name="incidente" class ="form-control"> 
-                            <?php
-                            
+                    </select>
+                  </div>
+                  <div class="col-md-3 mb-2">
+                    <label for="tipoI">Tipo</label>
+                    <!-- Se necesita select para mostrar los incidentes-->
+                    <select name="incidente" class="form-control">
+                      <?php
+
                                 include('datos/conexion2.php');
 
                                 $sql = "SELECT * FROM incidentes";
@@ -298,100 +307,85 @@ include('datos/conexion2.php');
                                      <option value=".$incidente.">$incidente</option>
                                      ";
                                 }
-                            
+
                             ?>
-                        </select>
-                </div>
+                    </select>
+                  </div>
                 </div>
                 <div class="form-row">
-                <div class="col-md-9 mb-6">
-                <label for="descrip">Descripcion</label>
-                <textarea class="form-control" name="descrip" id="descrip" rows="4" cols="80" placeholder="Descripción" required></textarea>
-                </div>
+                  <div class="col-md-9 mb-6">
+                    <label for="descrip">Descripcion</label>
+                    <textarea class="form-control" name="descrip" id="descrip" rows="4" cols="80" placeholder="Descripción" required></textarea>
+                  </div>
                 </div>
                 <hr>
-                <button class="btn btn-primary" type="submit" id="addIncidente" name="addIncidente" >Agregar Reporte</button>
-                </form>
-                <div style="padding-top: 1.2rem;" id="result">
-                </div>
-                </div>
-                <!--CARD BODY-->
-                </div>
-                <!--CARD-->
+                <button class="btn btn-primary" type="submit" id="addReporte" name="addReporte">Agregar Reporte</button>
+              </form>
+              <div style="padding-top: 1.2rem;" id="result">
+              </div>
             </div>
-            <!--agrefar-->
-
-
-                    <!--modificar-->
-                 <div id="verReporte" style="display: none; padding-top: 3rem;">
-                    <div class="card w-100 mx-auto shadow">
-                        <div class="card-header header bg-white text-center">
-                        <h4>Modificar Reporte</h4>
-                        </div>
-                        <div class="card-body">
-                        <form action="src/verIncidentes.php" method="post" id="bIncidentes">
-                            <div class="form-row">
-                            <label for="buscarP">ID de Reporte</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" id="buscarIncidente" name="buscarIncidente" placeholder="Nombre">
-                            </div>
-                            </div>
-                        </form>
-                        <form method="post">
-                            <div class="table-responsive" style="padding-top: 2rem;">
-                            <div id="live_data_taller" style="padding-top: 1.2rem;"></div>
-                            <span id="result_taller" style="padding-top: 1.2rem;"></span>
-                            </div>
-                        </form>
-                        <!--tabla-->
-                        </div>
-                        <!--Card-body-->
-                        </div>
-                        <!--CARD-->
-                </div>
-                    <!--modificar-->
-
-
-      <div id="geolocalizacion" style="display: none; padding-top: 3rem;">
-        <div class="card w-100 mx-auto shadow">
-          <div class="card-header header bg-white text-center">
-            <h4>Contador Finalizar Evento</h4>
+            <!--CARD BODY-->
           </div>
-          <div class="card-body">
+          <!--CARD-->
+        </div>
+        <!--agrefar-->
+
+        <!--modificar-->
+        <div id="verReporte" style="display: none; padding-top: 3rem;">
+          <div class="card w-100 mx-auto shadow">
+            <div class="card-header header bg-white text-center">
+              <h4>Ver Reporte</h4>
+            </div>
+            <div class="card-body">
+              <form action="src/verReportes.php" method="post" id="bReportes">
+                <div class="form-row">
+                  <label for="buscarP">ID de Reporte</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="buscarReporte" name="buscarReporte" placeholder="Nombre">
+                  </div>
+                </div>
+              </form>
+              <form method="post">
+                <div class="table-responsive" style="padding-top: 2rem;">
+                  <div id="live_data_reportes" style="padding-top: 1.2rem;"></div>
+                  <span id="result_reportes" style="padding-top: 1.2rem;"></span>
+                </div>
+              </form>
+              <!--tabla-->
+            </div>
+            <!--Card-body-->
+          </div>
+          <!--CARD-->
+        </div>
+        <!--modificar-->
+
+
+        <div id="geolocalizacion" style="display: none; padding-top: 3rem;">
+          <div class="card w-100 mx-auto shadow">
+            <div class="card-header header bg-white text-center">
+              <h4>Contador Finalizar Evento</h4>
+            </div>
+            <div class="card-body">
               <div id="contenedor">
-              <div class="form-row">
-                <div class="col-md-3 mb-2" id="Horas">00</div>
-                <div class="col-md-3 mb-2" id="Minutos">:00</div>
-                <div class="col-md-3 mb-2" id="Segundos">:00</div>
-                <div class="col-md-3 mb-2" id="Centesimas">:00</div>
+                <div class="form-row">
+                  <div class="col-md-3 mb-2" id="Horas">00</div>
+                  <div class="col-md-3 mb-2" id="Minutos">:00</div>
+                  <div class="col-md-3 mb-2" id="Segundos">:00</div>
+                  <div class="col-md-3 mb-2" id="Centesimas">:00</div>
                 </div>
                 <input type="button" class="boton btn btn-success" id="inicio" value="Start &#9658;" onclick="inicio();">
                 <input type="button" class="boton btn btn-danger" id="parar" value="Stop &#8718;" onclick="parar();" disabled>
                 <input type="button" class="boton btn btn-light" id="continuar" value="Resume &#8634;" onclick="inicio();" disabled>
                 <input type="button" class="boton btn btn-light" id="reinicio" value="Reset &#8635;" onclick="reinicio();" disabled>
+              </div>
+
+              <!--carta contador-->
             </div>
-
-            <!--carta contador-->
+            <!--Card-body-->
           </div>
-          <!--Card-body-->
+          <!--CARD-->
         </div>
-        <!--CARD-->
-      </div>
-      <!--Carta geolocalizacion-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        <!--Carta geolocalizacion-->
 
         <div id="cartagantt" style="display: none; padding-top: 3rem;">
           <div class="card w-100 mx-auto shadow">
@@ -429,7 +423,7 @@ include('datos/conexion2.php');
               </form>
               <div class="embed-responsive embed-responsive-16by9 ">
                 <!--<iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3115.6875777672344!2d-103.39525917374276!3d20.708307817834683!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428ae4c0728a2a3%3A0x675a6846f2b532c5!2sBosque+Colomos!5e0!3m2!1ses!2smx!4v1540356265341"></iframe>-->
-                  <iframe class="embed-responsive-item" src="https://www.google.com/maps/d/u/0/embed?mid=1CZ6nTmGGJ8cdsVNIyBGvuPqjNrGIukdX"></iframe>
+                <iframe class="embed-responsive-item" src="https://www.google.com/maps/d/u/0/embed?mid=1CZ6nTmGGJ8cdsVNIyBGvuPqjNrGIukdX"></iframe>
               </div>
               <!--tabla-->
             </div>
@@ -523,8 +517,6 @@ include('datos/conexion2.php');
           <!--CARD-->
         </div>
         <!--modificar-->
-
-
       </div>
 
     </div>

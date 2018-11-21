@@ -3,8 +3,8 @@
 
     $output = "";
 
-    if (!empty($_POST['verStockIncidentes'])) {
-        if ($buscar = $cn->real_escape_string($_POST['verStockIncidentes'])) {
+    if (!empty($_POST['verStockReportes'])) {
+        if ($buscar = $cn->real_escape_string($_POST['verStockReportes'])) {
             $sql = "SELECT * FROM relacion_incidentes WHERE Titulo LIKE '%".$buscar."%'";
             $resultado = $cn->query($sql);
 
@@ -12,12 +12,12 @@
                     <div class="table-responsive">
                          <table class="table table-bordered">
                               <tr>
-                                   <th width="10%">ID Incidente</th>
+                                   <th width="10%">ID Reporte</th>
                                    <th width="40%">Titulo</th>
                                    <th width="40%">Descripcion</th>
                                    <th width="40%">Hora</th>
                                    <th width="40%">Usuario</th>
-                                   <th width="40%">Num Incidente</th>
+                                   <th width="40%">Num Reporte</th>
 
                               </tr>';
 

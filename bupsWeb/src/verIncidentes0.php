@@ -3,8 +3,8 @@
 
     $output = "";
 
-    if (!empty($_POST['verStockIncidentes'])) {
-        if ($buscar = $cn->real_escape_string($_POST['verStockIncidentes'])) {
+    if (!empty($_POST['verStockIncidentes0'])) {
+        if ($buscar = $cn->real_escape_string($_POST['verStockIncidentes0'])) {
             $sql = "SELECT * FROM relacion_incidentes WHERE Titulo LIKE '%".$buscar."%'";
             $resultado = $cn->query($sql);
 

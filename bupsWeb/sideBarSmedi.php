@@ -42,7 +42,7 @@
                 <a href="#smincidenciast" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle text-dark">
                   <i class="fas fa-address-card fa-lg"></i>Incidencias
                 </a>
-                <ul class="collapse list-unstyled" id="smincidencias">
+                <ul class="collapse list-unstyled" id="smincidenciast">
                   <li>
                     <a href="#" onclick="toggleVisibility('smIncidentes')" class="text-dark">Agregar Incidente</a >
               </li>
@@ -207,7 +207,7 @@
                  <div id="smIncidentesMostrar" style="display: none; padding-top: 3rem;">
                     <div class="card w-100 mx-auto shadow">
                         <div class="card-header header bg-white text-center">
-                        <h4>Modificar Taller</h4>
+                        <h4>Modificar Incidente</h4>
                         </div>
                         <div class="card-body">
                         <form action="src/verIncidentes.php" method="post" id="bIncidentes">
@@ -220,8 +220,8 @@
                         </form>
                         <form method="post">
                             <div class="table-responsive" style="padding-top: 2rem;">
-                            <div id="live_data_taller" style="padding-top: 1.2rem;"></div>
-                            <span id="result_taller" style="padding-top: 1.2rem;"></span>
+                            <div id="live_data_incidente" style="padding-top: 1.2rem;"></div>
+                            <span id="result_incidente" style="padding-top: 1.2rem;"></span>
                             </div>
                         </form>
                         <!--tabla-->
@@ -256,7 +256,7 @@
       //control de panel lateral
 
         //Mostrar la opcion de panel lateral
-        var divs = ["smFicha","smMapa", "usuario", "smIncidentes", "smIncidentesMostrar"];
+        var divs = ["smFicha","smMapa", "smIncidentes", "smIncidentesMostrar"];
         var visibleDivId = null;
 
         function toggleVisibility(divId) {

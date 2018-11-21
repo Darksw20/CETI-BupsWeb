@@ -25,6 +25,71 @@ include('datos/conexion2.php');
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <script src="js/ajax.js" charset="utf-8"></script>
+    <script>
+          var centesimas = 0;
+        var segundos = 0;
+        var minutos = 0;
+        var horas = 0;
+        function inicio () {
+          control = setInterval(cronometro,10);
+          document.getElementById("inicio").disabled = true;
+          document.getElementById("parar").disabled = false;
+          document.getElementById("continuar").disabled = true;
+          document.getElementById("reinicio").disabled = false;
+        }
+        function parar () {
+          clearInterval(control);
+          document.getElementById("parar").disabled = true;
+          document.getElementById("continuar").disabled = false;
+        }
+        function reinicio () {
+          clearInterval(control);
+          centesimas = 0;
+          segundos = 0;
+          minutos = 0;
+          horas = 0;
+          Centesimas.innerHTML = ":00";
+          Segundos.innerHTML = ":00";
+          Minutos.innerHTML = ":00";
+          Horas.innerHTML = "00";
+          document.getElementById("inicio").disabled = false;
+          document.getElementById("parar").disabled = true;
+          document.getElementById("continuar").disabled = true;
+          document.getElementById("reinicio").disabled = true;
+        }
+        function cronometro () {
+          if (centesimas < 99) {
+            centesimas++;
+            if (centesimas < 10) { centesimas = "0"+centesimas }
+            Centesimas.innerHTML = ":"+centesimas;
+          }
+          if (centesimas == 99) {
+            centesimas = -1;
+          }
+          if (centesimas == 0) {
+            segundos ++;
+            if (segundos < 10) { segundos = "0"+segundos }
+            Segundos.innerHTML = ":"+segundos;
+          }
+          if (segundos == 59) {
+            segundos = -1;
+          }
+          if ( (centesimas == 0)&&(segundos == 0) ) {
+            minutos++;
+            if (minutos < 10) { minutos = "0"+minutos }
+            Minutos.innerHTML = ":"+minutos;
+          }
+          if (minutos == 59) {
+            minutos = -1;
+          }
+          if ( (centesimas == 0)&&(segundos == 0)&&(minutos == 0) ) {
+            horas ++;
+            if (horas < 10) { horas = "0"+horas }
+            Horas.innerHTML = horas;
+          }
+        }
+          
+  </script>
   </head>
 
   <body>
@@ -57,6 +122,11 @@ include('datos/conexion2.php');
             </a>
               </li>
               <li>
+                <a href="#" onclick="toggleVisibility('geolocalizacion')" class="text-dark">
+                <i class="fas fa-map-marker fa-lg"></i>Geolocalización
+                </a>
+                </li>
+              <li>
                 <a href="#talleresOrga" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle text-dark">
                   <i class="fas fa-address-card fa-lg"></i>Talleres y Torneos
                 </a>
@@ -86,13 +156,13 @@ include('datos/conexion2.php');
             </a>
                     <ul class="collapse list-unstyled" id="ReportesSubmenu">
                       <li>
-                        <a href="#" onclick="toggleVisibility('gananciasTotales')" class="text-dark">Nuevo</a
+                        <a href="#" onclick="toggleVisibility('añadirReporte')" class="text-dark">Nuevo</a
                 >
               </li>
               <li>
                 <a
                   href="#"
-                  onclick="toggleVisibility('gananciasProducto')"
+                  onclick="toggleVisibility('verReporte')"
                   class="text-dark"
                   >Reportes</a
                 >
@@ -169,112 +239,159 @@ include('datos/conexion2.php');
         </div>
         <!-- Usuario -->
 
-        <div id="gananciasTotales" style="display: none; padding-top: 3rem;">
-          <div class="card w-100 mx-auto shadow">
-            <div class="card-header header bg-white text-center">
-              <h4>Ganacias totales</h4>
-            </div>
-            <div class="card-body">
-              <form>
-                <div class="form-row">
-                  <label for="ganaciasStaff">Staff</label>
-                  <div class="input-group">
-                    <input type="text" class="form-control" id="ganaciasStaff" placeholder="Hewlett-Packard" />
-                    <div class="input-group-append">
-                      <button class="btn btn-primary" type="submit">
-                        Buscar
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </form>
-              <div class="table-responsive" style="padding-top: 2rem;">
-                <table class="table table-bordered">
-                  <thead class="thead-light">
-                    <tr>
-                      <th scope="col">Staff</th>
-                      <th scope="col">Ingreso generado</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Intel</td>
-                      <td class="text-success">$30,000,000</td>
-                    </tr>
-                    <tr>
-                      <td>Hewlett-Packard</td>
-                      <td class="text-success">$50,000,000</td>
-                    </tr>
-                    <tr>
-                      <td>Nvidia</td>
-                      <td class="text-success">$10,000,000</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <!-- tabla -->
-              <div class="container bg-light rounded shadow-sm" style="padding: 20px;">
-                <h6>Ingreso total</h6>
-                <hr />
-                <h5 class="text-success">
-                  <i class="fas fa-dollar-sign fa-lg"></i> 90,000,000
-                </h5>
-              </div>
-            </div>
-            <!-- Card-body -->
-          </div>
-          <!-- CARD -->
-        </div>
-        <!-- gananciasTotales -->
 
-        <div id="gananciasProducto" style="display: none; padding-top: 3rem;">
-          <div class="card w-100 mx-auto shadow">
-            <div class="card-header header bg-white text-center">
-              <h4>Ganacias por producto</h4>
-            </div>
-            <div class="card-body">
-              <form>
-                <div class="form-row">
-                  <label for="idProducto">Id de producto</label>
-                  <div class="input-group">
-                    <input type="text" class="form-control" id="idProducto" placeholder="HP-1ZW00LA" />
-                    <div class="input-group-append">
-                      <button class="btn btn-primary" type="submit">
-                        Buscar
-                      </button>
-                    </div>
-                  </div>
+
+            <!--agregar-->
+            <div id="añadirReporte" style="display: none; padding-top: 3rem;"> 
+
+                <div class="card w-100 mx-auto shadow">
+                <div class="card-header bg-white text-center">
+                <h4>Agregar Reporte</h4>
                 </div>
-              </form>
-              <div class="table-responsive" style="padding-top: 2rem;">
-                <table class="table table-bordered">
-                  <thead class="thead-light">
-                    <tr>
-                      <th scope="col">ID Producto</th>
-                      <th scope="col">Nombre</th>
-                      <th scope="col">Staff</th>
-                      <th scope="col">Productos vendidos</th>
-                      <th scope="col">Total</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>HP-1ZW00LA</td>
-                      <td>HP OMEN 15</td>
-                      <td>Hewlett-Packard</td>
-                      <td>3</td>
-                      <td class="text-success">$72,000</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <!-- tabla -->
+
+                <div class="card-body">
+                <form action="src/insertarIncidente.php" method="post" id="myForm">
+                <h6 class="text-primary">Datos de los Reportes</h6>
+                <hr>
+                <div class="form-row">
+                <div class="col-md-3 mb-2">
+                <label for="titulo">Titulo</label>
+                <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Titulo" required>
+                </div>
+                <div class="col-md-3 mb-2">
+                <label for="horaI">Hora</label>
+                <input type="date" class="form-control" id="horaI" name="horaI" placeholder="Hora" required>
+                </div>
+                <div class="col-md-3 mb-2">
+                <label for="userI">Usuario</label> <!-- Se necesita select para mostrar los usuarion-->
+                <select name="userI" class ="form-control"> 
+                            <?php
+                            
+                                include('datos/conexion2.php');
+
+                                $sql = "SELECT * FROM usuario ORDER BY CUM";
+                                $result = mysqli_query($cn, $sql);
+
+                                while ($fila = mysqli_fetch_array($result)) {
+                                    $incidente = $fila["CUM"];
+                                     echo  "
+                                     <option value=".$incidente.">$incidente</option>
+                                     ";
+                                }
+                            
+                            ?>
+                        </select>
+                </div>
+                <div class="col-md-3 mb-2">
+                <label for="tipoI">Tipo</label><!-- Se necesita select para mostrar los incidentes-->
+                        <select name="incidente" class ="form-control"> 
+                            <?php
+                            
+                                include('datos/conexion2.php');
+
+                                $sql = "SELECT * FROM incidentes";
+                                $result = mysqli_query($cn, $sql);
+
+                                while ($fila = mysqli_fetch_array($result)) {
+                                    $incidente = $fila["PK_Incidentes"];
+                                     echo  "
+                                     <option value=".$incidente.">$incidente</option>
+                                     ";
+                                }
+                            
+                            ?>
+                        </select>
+                </div>
+                </div>
+                <div class="form-row">
+                <div class="col-md-9 mb-6">
+                <label for="descrip">Descripcion</label>
+                <textarea class="form-control" name="descrip" id="descrip" rows="4" cols="80" placeholder="Descripción" required></textarea>
+                </div>
+                </div>
+                <hr>
+                <button class="btn btn-primary" type="submit" id="addIncidente" name="addIncidente" >Agregar Reporte</button>
+                </form>
+                <div style="padding-top: 1.2rem;" id="result">
+                </div>
+                </div>
+                <!--CARD BODY-->
+                </div>
+                <!--CARD-->
             </div>
-            <!-- Card-body -->
+            <!--agrefar-->
+
+
+                    <!--modificar-->
+                 <div id="verReporte" style="display: none; padding-top: 3rem;">
+                    <div class="card w-100 mx-auto shadow">
+                        <div class="card-header header bg-white text-center">
+                        <h4>Modificar Reporte</h4>
+                        </div>
+                        <div class="card-body">
+                        <form action="src/verIncidentes.php" method="post" id="bIncidentes">
+                            <div class="form-row">
+                            <label for="buscarP">ID de Reporte</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="buscarIncidente" name="buscarIncidente" placeholder="Nombre">
+                            </div>
+                            </div>
+                        </form>
+                        <form method="post">
+                            <div class="table-responsive" style="padding-top: 2rem;">
+                            <div id="live_data_taller" style="padding-top: 1.2rem;"></div>
+                            <span id="result_taller" style="padding-top: 1.2rem;"></span>
+                            </div>
+                        </form>
+                        <!--tabla-->
+                        </div>
+                        <!--Card-body-->
+                        </div>
+                        <!--CARD-->
+                </div>
+                    <!--modificar-->
+
+
+      <div id="geolocalizacion" style="display: none; padding-top: 3rem;">
+        <div class="card w-100 mx-auto shadow">
+          <div class="card-header header bg-white text-center">
+            <h4>Contador Finalizar Evento</h4>
           </div>
-          <!-- CARD -->
+          <div class="card-body">
+              <div id="contenedor">
+              <div class="form-row">
+                <div class="col-md-3 mb-2" id="Horas">00</div>
+                <div class="col-md-3 mb-2" id="Minutos">:00</div>
+                <div class="col-md-3 mb-2" id="Segundos">:00</div>
+                <div class="col-md-3 mb-2" id="Centesimas">:00</div>
+                </div>
+                <input type="button" class="boton btn btn-success" id="inicio" value="Start &#9658;" onclick="inicio();">
+                <input type="button" class="boton btn btn-danger" id="parar" value="Stop &#8718;" onclick="parar();" disabled>
+                <input type="button" class="boton btn btn-light" id="continuar" value="Resume &#8634;" onclick="inicio();" disabled>
+                <input type="button" class="boton btn btn-light" id="reinicio" value="Reset &#8635;" onclick="reinicio();" disabled>
+            </div>
+
+            <!--carta contador-->
+          </div>
+          <!--Card-body-->
         </div>
-        <!-- ganacias por producto -->
+        <!--CARD-->
+      </div>
+      <!--Carta geolocalizacion-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         <div id="cartagantt" style="display: none; padding-top: 3rem;">
           <div class="card w-100 mx-auto shadow">
@@ -506,13 +623,14 @@ include('datos/conexion2.php');
       //Mostrar la opcion de panel lateral
       var divs = [
         "usuario",
-        "gananciasTotales",
-        "gananciasProducto",
+        "añadirReporte",
+        "verReporte",
         "orgaDash",
         "cartagantt",
         "orgaEvento",
         "agregarTaller",
-        "talleres"
+        "talleres",
+        "geolocalizacion"
       ];
       var visibleDivId = null;
 

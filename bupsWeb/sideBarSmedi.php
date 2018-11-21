@@ -29,11 +29,6 @@
 
             <ul class="list-unstyled components">
                 <li>
-                    <a href="#" onclick="toggleVisibility('smDash')" class="text-dark">
-                        <i class="fas fa-list-alt fa-lg"></i>Dashboard
-                    </a>
-                </li>
-                <li>
                     <a href="#" onclick="toggleVisibility('smFicha')" class="text-dark">
                             <i class="fas fa-notes-medical fa-lg"></i>Ficha Medica
                     </a>
@@ -44,10 +39,18 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" onclick="toggleVisibility('smIncidentes')" class="text-dark">
-                            <i class="fas fa-band-aid fa-lg"></i>Incidentes
-                    </a>
-                </li>
+                <a href="#smincidenciast" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle text-dark">
+                  <i class="fas fa-address-card fa-lg"></i>Incidencias
+                </a>
+                <ul class="collapse list-unstyled" id="smincidencias">
+                  <li>
+                    <a href="#" onclick="toggleVisibility('smIncidentes')" class="text-dark">Agregar Incidente</a >
+              </li>
+              <li>
+                <a href="#"onclick="toggleVisibility('smIncidentesMostrar')"class="text-dark">Incidentes</a>
+              </li>
+            </ul>
+          </li>
                 <li>
                     <a href="src/proces-unlgn.php" class="text-dark">
                       <i class="fas fa-user-circle fa-lg"></i>Cerrar sesión
@@ -56,9 +59,7 @@
             </ul>
         </nav>
       <!-- Page Content -->
-      <div
-        id="content"
-        style="background: linear-gradient(to top left, #6600ff 0%, #cc99ff 100%);">
+      <div id="content" style="background: linear-gradient(to top left, #6600ff 0%, #cc99ff 100%);">
         <div class="container">
           <nav
             class="navbar navbar-expand-lg navbar-light bg-white shadow barral"
@@ -88,10 +89,10 @@
               <!--Card-body-->
             </div>
             <!--CARD-->
-          </div>
+         </div>
           <!--Carta Gantt-->
     
-          <div id="smMapa" style="display: none; padding-top: 3rem;">
+             <div id="smMapa" style="display: none; padding-top: 3rem;">
               <div class="card w-100 mx-auto shadow">
                 <div class="card-header header bg-white text-center">
                   <h4>Buscar Usuario</h4>
@@ -121,9 +122,120 @@
 
 
 
-        </div>
-        <!--Admin dash-->
+            <!--agregar-->
+            <div id="smIncidentes" style="display: none; padding-top: 3rem;"> 
 
+                <div class="card w-100 mx-auto shadow">
+                <div class="card-header bg-white text-center">
+                <h4>Agregar Incidente</h4>
+                </div>
+
+                <div class="card-body">
+                <form action="src/insertarIncidente.php" method="post" id="myForm">
+                <h6 class="text-primary">Datos de los Incidentes</h6>
+                <hr>
+                <div class="form-row">
+                <div class="col-md-3 mb-2">
+                <label for="titulo">Titulo</label>
+                <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Titulo" required>
+                </div>
+                <div class="col-md-3 mb-2">
+                <label for="horaI">Hora</label>
+                <input type="date" class="form-control" id="horaI" name="horaI" placeholder="Hora" required>
+                </div>
+                <div class="col-md-3 mb-2">
+                <label for="userI">Usuario</label> <!-- Se necesita select para mostrar los usuarion-->
+                <select name="userI" class ="form-control"> 
+                            <?php
+                            
+                                include('datos/conexion2.php');
+
+                                $sql = "SELECT * FROM usuario ORDER BY CUM";
+                                $result = mysqli_query($cn, $sql);
+
+                                while ($fila = mysqli_fetch_array($result)) {
+                                    $incidente = $fila["CUM"];
+                                     echo  "
+                                     <option value=".$incidente.">$incidente</option>
+                                     ";
+                                }
+                            
+                            ?>
+                        </select>
+                </div>
+                <div class="col-md-3 mb-2">
+                <label for="tipoI">Tipo</label><!-- Se necesita select para mostrar los incidentes-->
+                        <select name="incidente" class ="form-control"> 
+                            <?php
+                            
+                                include('datos/conexion2.php');
+
+                                $sql = "SELECT * FROM incidentes";
+                                $result = mysqli_query($cn, $sql);
+
+                                while ($fila = mysqli_fetch_array($result)) {
+                                    $incidente = $fila["PK_Incidentes"];
+                                     echo  "
+                                     <option value=".$incidente.">$incidente</option>
+                                     ";
+                                }
+                            
+                            ?>
+                        </select>
+                </div>
+                </div>
+                <div class="form-row">
+                <div class="col-md-9 mb-6">
+                <label for="descrip">Descripcion</label>
+                <textarea class="form-control" name="descrip" id="descrip" rows="4" cols="80" placeholder="Descripción" required></textarea>
+                </div>
+                </div>
+                <hr>
+                <button class="btn btn-primary" type="submit" id="addIncidente" name="addIncidente" >Agregar Incidente</button>
+                </form>
+                <div style="padding-top: 1.2rem;" id="result">
+                </div>
+                </div>
+                <!--CARD BODY-->
+                </div>
+                <!--CARD-->
+            </div>
+            <!--agrefar-->
+
+
+                    <!--modificar-->
+                 <div id="smIncidentesMostrar" style="display: none; padding-top: 3rem;">
+                    <div class="card w-100 mx-auto shadow">
+                        <div class="card-header header bg-white text-center">
+                        <h4>Modificar Taller</h4>
+                        </div>
+                        <div class="card-body">
+                        <form action="src/verIncidentes.php" method="post" id="bIncidentes">
+                            <div class="form-row">
+                            <label for="buscarP">ID de incidente</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="buscarIncidente" name="buscarIncidente" placeholder="Nombre">
+                            </div>
+                            </div>
+                        </form>
+                        <form method="post">
+                            <div class="table-responsive" style="padding-top: 2rem;">
+                            <div id="live_data_taller" style="padding-top: 1.2rem;"></div>
+                            <span id="result_taller" style="padding-top: 1.2rem;"></span>
+                            </div>
+                        </form>
+                        <!--tabla-->
+                        </div>
+                        <!--Card-body-->
+                        </div>
+                        <!--CARD-->
+                </div>
+                    <!--modificar-->
+
+
+
+        
+    </div>
     </div>
     <!--contenido-->
 
@@ -144,7 +256,7 @@
       //control de panel lateral
 
         //Mostrar la opcion de panel lateral
-        var divs = ["smFicha","smMapa","proveedor", "usuario", "gananciasTotales", "gananciasProducto", "inventario", "adminDash"];
+        var divs = ["smFicha","smMapa", "usuario", "smIncidentes", "smIncidentesMostrar"];
         var visibleDivId = null;
 
         function toggleVisibility(divId) {
@@ -169,15 +281,6 @@
             }
         }
         //Mostrar la opcion de panel lateral
-
-        //Seleccionar formulario
-        $(function () {
-            $('#formSelect0').change(function () {
-                $('.formulario').hide();
-                $('#' + $(this).val()).show();
-            });
-        });
-      //seleccionar formulario
 
     </script>
       <script src="http://maps.google.com/maps/api/js?sensor=false"></script>

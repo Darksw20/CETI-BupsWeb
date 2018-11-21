@@ -155,7 +155,91 @@ $(document).ready(function(){
         edit_data_taller(id,Nombre_Taller, "Nombre_Taller");
     });
 });
-//modificarStockProveedor
+//ver talleres
+
+
+
+
+//ver incidentes
+$(document).ready(function(){
+    function fetch_data_taller(){
+      $('#bIncidentes').submit(function(e){
+            e.preventDefault(); //Se previene el envio del formulario
+        })
+
+        $('#buscarIncidente').keyup(function(){
+            var envio = $('#buscarIncidente').val(); //Se obtiene el valor del input
+
+            $.ajax({
+                url: 'src/verIncidentes.php', //Lugar a donde se envia la variable
+                method: "POST",
+                data: ('verStockIncidentes='+envio), //Variable que recive el PHP
+                success: function(resp) {
+                    if(resp != "") {
+                        $('#live_data_incidente').html(resp); //Muestra la consulta en el div con el id="verDivStock"
+                    }
+                }
+            })
+        })
+
+    }
+    fetch_data_taller();
+	function edit_data_taller(id, text, column_name)
+    {
+        $.ajax({
+            url:"src/editTaller.php",
+            method:"POST",
+            data:{id:id, text:text, column_name:column_name},
+            dataType:"text",
+            success:function(data){
+                //alert(data);
+      				$('#result_taller').html("<div class='alert alert-success' role='alert' >"+data+"</div>");
+            }
+        });
+    }
+    $(document).on('blur', '.Encargado', function(){
+        var id = $(this).data("id1");
+        var Encargado = $(this).text();
+        edit_data_taller(id, Encargado, "Encargado");
+    });
+    $(document).on('blur', '.Descripcion', function(){
+        var id = $(this).data("id2");
+        var Descripcion = $(this).text();
+        edit_data_taller(id,Descripcion, "Descripcion");
+    });
+    $(document).on('blur', '.TallerAct', function(){
+        var id = $(this).data("id3");
+        var TallerAct = $(this).text();
+        edit_data_taller(id,TallerAct, "TallerAct");
+    });
+    $(document).on('blur', '.Limite', function(){
+        var id = $(this).data("id4");
+        var Limite = $(this).text();
+        edit_data_taller(id,Limite, "Limite");
+    });
+    $(document).on('blur', '.Horario', function(){
+        var id = $(this).data("id5");
+        var Horario = $(this).text();
+        edit_data_taller(id,Horario, "Horario");
+    });
+    $(document).on('blur', '.Horario_Fin', function(){
+        var id = $(this).data("id6");
+        var Horario_Fin = $(this).text();
+        edit_data_taller(id,Horario_Fin, "Horario_Fin");
+    });
+    $(document).on('blur', '.Nombre_Taller', function(){
+        var id = $(this).data("id7");
+        var Nombre_Taller = $(this).text();
+        edit_data_taller(id,Nombre_Taller, "Nombre_Taller");
+    });
+});
+//ver incidentes
+
+
+
+
+
+
 
 //verTalleres
 $(document).ready(function(){

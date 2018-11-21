@@ -428,7 +428,8 @@ include('datos/conexion2.php');
                 </div>
               </form>
               <div class="embed-responsive embed-responsive-16by9 ">
-                <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3115.6875777672344!2d-103.39525917374276!3d20.708307817834683!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428ae4c0728a2a3%3A0x675a6846f2b532c5!2sBosque+Colomos!5e0!3m2!1ses!2smx!4v1540356265341"></iframe>
+                <!--<iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3115.6875777672344!2d-103.39525917374276!3d20.708307817834683!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428ae4c0728a2a3%3A0x675a6846f2b532c5!2sBosque+Colomos!5e0!3m2!1ses!2smx!4v1540356265341"></iframe>-->
+                  <iframe class="embed-responsive-item" src="https://www.google.com/maps/d/u/0/embed?mid=1CZ6nTmGGJ8cdsVNIyBGvuPqjNrGIukdX"></iframe>
               </div>
               <!--tabla-->
             </div>

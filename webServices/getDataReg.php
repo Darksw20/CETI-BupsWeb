@@ -1,8 +1,6 @@
 <?php
-	$db_hostname="localhost";
-	$db_database="prueba";
-	$db_username="root";
-	$db_password="";
+	
+	include ("conexion.php");
 
 	$json=array();
 
@@ -38,18 +36,19 @@
 					$json['tallerxPer']=tallerxPer();
 					$json['kitExist']=kitExist();
 					$json['kitEntre']=kitEntre();
+					
 
 				}
 				else
 				{
 					$json['estadoQuery']=0;
-					echo "1";
+					
 				}
 			}
 			else
 			{
 				$json['estadoQuery']=0;
-				echo "2";
+				
 			}
 
 			mysqli_close($conexion);
@@ -69,7 +68,7 @@
 function regTC()
 {
 
-	$sumTalleresConcursos=200;
+	$sumTalleresConcursos=420;
 	return $sumTalleresConcursos;
 }
 
@@ -91,16 +90,17 @@ function masTC()
 function asistProv()
 {
 	$prov=array();
-	$prov['JAL']=2400;
-	$prov['PUV']=50;
-	$prov['AGS']=400;
-	$prov['GT1']=50;
-	$prov['GT2']=400;
-	$prov['QUE']=50;
-	$prov['QUR']=400;
-	$prov['SLP']=50;
-	$prov['SIN']=400;
-	$prov['SON']=50;
+	$prov[0]=2400;
+	$prov[1]=50;
+	$prov[2]=400;
+	$prov[3]=50;
+	$prov[4]=400;
+	$prov[5]=50;
+	$prov[6]=400;
+	$prov[7]=50;
+	$prov[8]=400;
+	$prov[9]=50;
+	
 	return $prov;
 }
 function tallerxPer()

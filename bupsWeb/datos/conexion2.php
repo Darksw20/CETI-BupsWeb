@@ -2,7 +2,7 @@
 	$servidor = "localhost";
 	$usuario = "root";
 	$contraseña = "";
-	$basedatos = "bups1.0";
+	$basedatos = "prueba";
 
 	$cn = mysqli_connect ($servidor, $usuario, $contraseña)
 	or die

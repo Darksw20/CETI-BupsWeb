@@ -1,7 +1,5 @@
 <?php
-	
 	include ("conexion.php");
-
 	$json=array();
 
 	if(isset($_POST["CUM"])&&isset($_POST["Pass"]))
@@ -23,7 +21,6 @@
 			$res_query=mysqli_query($conexion,$query);
 			if($registro=mysqli_fetch_array($res_query))
 			{
-
 				$userValid=$registro['Tipo_Usuario'];
 				if($userValid==1)
 				{
@@ -36,31 +33,28 @@
 					$json['tallerxPer']=tallerxPer();
 					$json['kitExist']=kitExist();
 					$json['kitEntre']=kitEntre();
-					
-
+					$json['regAct']=regActivos();
+					$json['dispoReg']=dispRegistrando();
 				}
 				else
 				{
+					//el usuario no debe ver esto
 					$json['estadoQuery']=0;
-					
 				}
 			}
 			else
 			{
-				$json['estadoQuery']=0;
-				
+				//no hay datos
+				$json['estadoQuery']=404;	
 			}
-
 			mysqli_close($conexion);
 			echo json_encode($json);
 		}
-		
-
-
 	}
 	else
 	{
-		$json['estadoQuery']=404;
+		//Hay datos en nulo
+		$json['estadoQuery']=420;
 		mysqli_close($conexion);
 		echo json_encode($json);
 	}
@@ -109,7 +103,7 @@ function tallerxPer()
 	$talleres=5600;
 	$concursos=2300;
 	$TallxPer=($users/($talleres+$concursos));
-	return $TallxPer;
+	return round($TallxPer,3);
 }
 function kitExist()
 {
@@ -120,6 +114,17 @@ function kitEntre()
 {
 	$kitsEnt=200;
 	return $kitsEnt;
+}
+function regActivos()
+{
+	date_default_timezone_set('America/Mexico_City');
+	$regAct=date("H:i:s");
+	return $regAct;
+}
+function dispRegistrando()
+{
+	$dispReg=40;
+	return $dispReg;
 }
 /*
 	$AGS

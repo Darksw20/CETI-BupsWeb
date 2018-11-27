@@ -26,13 +26,16 @@
 				if($userValid==1)
 				{
 					$json['estadoQuery']=200;
-					$json['numIncidencias']=regTC();//Regresa suma de tallers y concursos
-					$json['personasSin']=pagados();
-					$json['personasLle']=regPreReg();
-					$json['escalaSat']=masTC();
-					$json['gastoProy']=asistProv();
-					$json['gastoFinal']=tallerxPer();
-					$json['evalTalleres']=kitExist();
+					$json['numIncidencias']=incidencias();//Regresa suma de tallers y concursos
+					$json['personasSin']=sinLlegar();
+					$json['personasLle']=pLlegados();
+
+					$json['escalaSat']=Satisfaccion();
+
+					$json['gastoProy']=gProy();
+					$json['gastoFinal']=gFinal();
+
+					$json['evalTalleres']=evalTall();
 
 				}
 				else
@@ -61,55 +64,58 @@
 		echo json_encode($json);
 	}
 
-function regTC()
+function incidencias()
 {
 
-	$sumTalleresConcursos=200;
-	return $sumTalleresConcursos;
+	$inc=200;
+	return $inc;
 }
 
-function pagados()
+function sinLlegar()
 {
-	$pag=3000;
-	return $pag;
+	$sL=3000;
+	return $sL;
 }
-function regPreReg()
+function pLlegados()
 {
-	$reg=1500;
-	return $reg;
+	$pL=1500;
+	return $pL;
 }
-function masTC()
+function Satisfaccion()
 {
-	$mastc=300;
-	return $mastc;
+	$sat=array();
+	$sat[0]=2400;
+	$sat[1]=50;
+	$sat[2]=400;
+	$sat[3]=50;
+	$sat[4]=400;
+	return $sat;
 }
-function asistProv()
+function gProy()
 {
-	$prov=array();
-	$prov['JAL']=2400;
-	$prov['PUV']=50;
-	$prov['AGS']=400;
-	$prov['GT1']=50;
-	$prov['GT2']=400;
-	$prov['QUE']=50;
-	$prov['QUR']=400;
-	$prov['SLP']=50;
-	$prov['SIN']=400;
-	$prov['SON']=50;
-	return $prov;
+	
+	$gastP=300;
+	return $gastP;
 }
-function tallerxPer()
+function gFinal()
 {
-	$users=8700;
-	$talleres=5600;
-	$concursos=2300;
-	$TallxPer=($users/($talleres+$concursos));
-	return $TallxPer;
+	$gastF=14440;
+	return $gastF;
 }
-function kitExist()
+function evalTall()
 {
-	$kitsE=8500;
-	return $kitsE;
+	$eval=array();
+	$eval[0]=2400;
+	$eval[1]=50;
+	$eval[2]=400;
+	$eval[3]=50;
+	$eval[4]=400;
+	$eval[5]=2400;
+	$eval[6]=50;
+	$eval[7]=400;
+	$eval[8]=50;
+	$eval[9]=400;
+	return $eval;
 }
 /*
 	$AGS

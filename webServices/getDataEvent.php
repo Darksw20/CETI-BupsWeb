@@ -35,26 +35,24 @@
 				}
 				else
 				{
+					//el usuario no debe ver esto
 					$json['estadoQuery']=0;
-					
 				}
 			}
 			else
 			{
-				$json['estadoQuery']=0;
-				
+				//no hay datos
+				$json['estadoQuery']=404;
 			}
 
 			mysqli_close($conexion);
 			echo json_encode($json);
 		}
-		
-
-
 	}
 	else
 	{
-		$json['estadoQuery']=404;
+		//Hay datos en nulo
+		$json['estadoQuery']=420;
 		mysqli_close($conexion);
 		echo json_encode($json);
 	}
@@ -76,17 +74,19 @@ function entT()
 	$entTo=2500;
 	return $entTo;
 }
-function salT()()
+function salT()
 {
 	$salTo=2700;
 	return $salTo;
 }
 function horasT()
 {
+	date_default_timezone_set('America/Mexico_City');
 	$prov=array();
 	$prov['hora']=50;
 	$prov['minutos']=30;
 	$prov['segundos']=57;
+	$horasTo=date("H:i:s");
 	return $horasTo;
 }
 /*

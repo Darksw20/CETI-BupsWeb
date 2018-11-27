@@ -37,11 +37,15 @@
 				//Guarda tipo de usuario si todo es correcto
 				$json['tipo']=$registro['Tipo_Usuario'];
 				$a=0;
-				while($a<9)
+				while($a<8)
 				{
-					$fecha=date("h:i:sa");
-					$sqlInsert="INSERT INTO relacion_acceso VALUES('','$fecha', 1,'".$equipo[$a]."',1)";
-					$res_query=mysqli_query($conexion,$sqlInsert).mysqli_error($conexion);
+					if($equipo[$a]!=NULL)
+					{
+						$fecha=date("h:i:sa");
+						$sqlInsert="INSERT INTO relacion_acceso VALUES('','$fecha', 1,'".$equipo[$a]."',1)";
+						$res_query=mysqli_query($conexion,$sqlInsert).mysqli_error($conexion);
+					}
+					
 					$a++;
 				}
 

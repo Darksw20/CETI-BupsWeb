@@ -266,7 +266,7 @@ include('datos/conexion2.php');
                     <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Titulo" required>
                   </div>
                   <div class="col-md-3 mb-2">
-                    <label for="horaI">Hora</label>
+                    <label for="horaI">Fecha</label>
                     <input type="date" class="form-control" id="horaI" name="horaI" placeholder="Hora" required>
                   </div>
                   <div class="col-md-3 mb-2">
@@ -466,10 +466,27 @@ include('datos/conexion2.php');
                     <label for="horario">Hora inicio</label>
                     <input type="time" class="form-control" id="horaInicio" name="horaInicio" required>
                   </div>
-                  <div class="col-md-3 mb-3">
-                    <label for="horario">Hora fin</label>
-                    <input type="time" class="form-control" id="horaFin" name="horaFin" required>
-                  </div>
+                  <div class="col-md-3 mb-2">
+                  <label for="PK_Localizacion">Localizacion</label>
+                  <!-- Se necesita select para mostrar localizaciones-->
+                  <select name="PK_Localizacion" class="form-control">
+                    <?php
+
+                                include('datos/conexion2.php');
+
+                                $sql = "SELECT * FROM localizacion ORDER BY PK_Localizacion";
+                                $result = mysqli_query($cn, $sql);
+
+                                while ($fila = mysqli_fetch_array($result)) {
+                                      $localizacion = $fila["PK_Localizacion"];
+                                     echo  "
+                                     <option value=".$localizacion.">$localizacion</option>
+                                     ";
+                                }
+
+                            ?>
+                  </select>
+                </div>
                 </div>
                 <div class="form-row">
                   <div class="col-md-9 mb-6">

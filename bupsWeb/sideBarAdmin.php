@@ -223,7 +223,7 @@
                   <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Titulo" required>
                 </div>
                 <div class="col-md-3 mb-2">
-                  <label for="horaI">Hora</label>
+                  <label for="horaI">Fecha</label>
                   <input type="date" class="form-control" id="horaI" name="horaI" placeholder="Hora" required>
                 </div>
                 <div class="col-md-3 mb-2">

@@ -144,15 +144,15 @@ $(document).ready(function(){
         var Horario = $(this).text();
         edit_data_taller(id,Horario, "Horario");
     });
-    $(document).on('blur', '.Horario_Fin', function(){
-        var id = $(this).data("id6");
-        var Horario_Fin = $(this).text();
-        edit_data_taller(id,Horario_Fin, "Horario_Fin");
-    });
     $(document).on('blur', '.Nombre_Taller', function(){
         var id = $(this).data("id7");
         var Nombre_Taller = $(this).text();
         edit_data_taller(id,Nombre_Taller, "Nombre_Taller");
+    });
+    $(document).on('blur', '.FK_Localizacion', function(){
+        var id = $(this).data("id8");
+        var FK_Localizacion = $(this).text();
+        edit_data_taller(id,FK_Localizacion, "FK_Localizacion");
     });
 });
 //verTalleres

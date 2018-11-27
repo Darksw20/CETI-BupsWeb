@@ -4,6 +4,7 @@
 	$contraseña = "";
 	$basedatos = "bups";
 
+
 	$cn = mysqli_connect ($servidor, $usuario, $contraseña)
 	or die
 	("No se puede conectar con el servidor");

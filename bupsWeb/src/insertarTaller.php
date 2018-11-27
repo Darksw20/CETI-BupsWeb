@@ -7,15 +7,14 @@
   $actividad = $cn->real_escape_string($_POST["actividad"]);
   $limite = $cn->real_escape_string($_POST["limite"]);
   $horaInicio = $cn->real_escape_string($_POST["horaInicio"]);
-  $horaFin = $cn->real_escape_string($_POST["horaFin"]);
   $nombre = $cn->real_escape_string($_POST["nomTaller"]);
+  $fk_Localizacion = $cn->real_escape_string($_POST["PK_Localizacion"]);
   //$tipo = $cn->real_escape_string($_POST["tipo"]);
-
   //var_dump($_POST);
 
   if (isset($_POST["addTaller"])) {
-    $sql = "INSERT INTO talleres (PK_Taller, Encargado, Descripcion, TallerAct, Limite, Horario, Horario_Fin, Nombre_Taller)
-    VALUES ('', '$encargado', '$descripcion', '$actividad', '$limite', '$horaInicio', '$horaFin', '$nombre')";
+    $sql = "INSERT INTO talleres (PK_Taller, Encargado, Descripcion, TallerAct, Limite, Horario, Nombre_Taller, FK_Localizacion)
+    VALUES ('', '$encargado', '$descripcion', '$actividad', '$limite', '$horaInicio', '$nombre','$fk_Localizacion')";
 
     var_dump($sql);
 

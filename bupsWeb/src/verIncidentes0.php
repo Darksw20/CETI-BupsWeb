@@ -15,7 +15,7 @@
                                    <th width="10%">ID Incidente</th>
                                    <th width="40%">Titulo</th>
                                    <th width="40%">Descripcion</th>
-                                   <th width="40%">Hora</th>
+                                   <th width="40%">Fecha</th>
                                    <th width="40%">Usuario</th>
                                    <th width="40%">Num Incidente</th>
 
@@ -28,7 +28,7 @@
                               <td>'.$row["PK_Incidente"].'</td>
                                  <td class="Titulo" data-id1="'.$row["PK_Incidente"].'" >'.$row["Titulo"].'</td>
                                  <td class="Descripcion" data-id2="'.$row["PK_Incidente"].'">'.$row["Descripcion"].'</td>
-                                 <td class="Hora" data-id3="'.$row["PK_Incidente"].'">'.$row["Hora"].'</td>
+                                 <td class="Fecha" data-id3="'.$row["PK_Incidente"].'">'.$row["Hora"].'</td>
                                  <td class="FK_Usuario" data-id4="'.$row["PK_Incidente"].'">'.$row["FK_Usuario"].'</td>
                                  <td class="FK_Incidente" data-id5="'.$row["PK_Incidente"].'">'.$row["FK_Incidente"].'</td>
                               </tr>';

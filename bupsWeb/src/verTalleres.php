@@ -20,9 +20,9 @@
                                    <th width="40%">Descripcion</th>
                                    <th width="40%">Actividad</th>
                                    <th width="40%">Limite</th>
-                                   <th width="40%">Hora de inicio</th>
-                                   <th width="40%">Hora de fin</th>
+                                   <th width="40%">Horio</th>
                                    <th width="40%">Nombre de taller</th>
+                                   <th width="40%">Localizacion</th>
                               </tr>';
 
             if (mysqli_num_rows($resultado) > 0) {
@@ -35,8 +35,8 @@
                                  <td class="Caracteristicas" data-id3="'.$row["PK_Taller"].'" contenteditable>'.$row["TallerAct"].'</td>
                                  <td class="Limite" data-id4="'.$row["PK_Taller"].'" contenteditable>'.$row["Limite"].'</td>
                                  <td class="Horario" data-id5="'.$row["PK_Taller"].'" contenteditable>'.$row["Horario"].'</td>
-                                 <td class="Horario_Fin" data-id6="'.$row["PK_Taller"].'" contenteditable>'.$row["Horario_Fin"].'</td>
                                   <td class="Nombre_Taller" data-id7="'.$row["PK_Taller"].'" contenteditable>'.$row["Nombre_Taller"].'</td>
+                                  <td class="FK_Localizacion" data-id8="'.$row["PK_Taller"].'" contenteditable>'.$row["FK_Localizacion"].'</td>
                               </tr>';
                 }
             }
